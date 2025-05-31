@@ -1,0 +1,17 @@
+[user]
+	name = Irfan Shadik Rishad
+	email = 77362427+irfanshadikrishad@users.noreply.github.com
+	signingKey = 55AAAB04E67AF604
+[commit]
+	gpgsign = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
