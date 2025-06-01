@@ -15,10 +15,16 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins
 require("lazy").setup({
-	-- Example plugin
+	-- plugins
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Catppuccin theme
 	{ "tpope/vim-commentary" }, -- Enables gcc/gbc for commenting
-	{ "preservim/nerdtree" }, -- Tree explorer
+	{
+		"preservim/nerdtree",
+		lazy = false,
+		config = function()
+			vim.g.NERDTreeShowHidden = 1
+		end,
+	},
 	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} }, -- Auto Pairs
 	{
 		"stevearc/conform.nvim",
@@ -44,6 +50,47 @@ require("lazy").setup({
 		version = false,
 		config = function()
 			require("mini.icons").setup()
+		end,
+	},
+	{
+		"monkoose/neocodeium",
+		event = "VeryLazy",
+		config = function()
+			local neocodeium = require("neocodeium")
+			neocodeium.setup()
+			vim.keymap.set("i", "<A-f>", neocodeium.accept)
+		end,
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/vim-vsnip",
+		},
+		config = function()
+			local cmp = require("cmp")
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						vim.fn["vsnip#anonymous"](args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+				}),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "buffer" },
+					{ name = "path" },
+					{ name = "neocodeium" },
+				}),
+			})
 		end,
 	},
 })
