@@ -1,6 +1,5 @@
 -- init.lua
 
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -13,11 +12,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Load plugins
 require("lazy").setup({
 	-- plugins
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 }, -- Catppuccin theme
-	{ "tpope/vim-commentary" }, -- Enables gcc/gbc for commenting
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{ "tpope/vim-commentary" },
 	{
 		"preservim/nerdtree",
 		lazy = false,
@@ -25,13 +23,13 @@ require("lazy").setup({
 			vim.g.NERDTreeShowHidden = 1
 		end,
 	},
-	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} }, -- Auto Pairs
+	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
 	{
 		"stevearc/conform.nvim",
 		opts = {
 			format_on_save = {
 				timeout_ms = 500,
-				lsp_fallback = true, -- Use LSP if no formatter is set
+				lsp_fallback = true,
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -58,7 +56,7 @@ require("lazy").setup({
 		config = function()
 			local neocodeium = require("neocodeium")
 			neocodeium.setup()
-			vim.keymap.set("i", "<A-f>", neocodeium.accept)
+			vim.keymap.set("i", "<Enter>", neocodeium.accept)
 		end,
 	},
 	{
@@ -130,3 +128,24 @@ vim.keymap.set("n", "<F2>", function()
 	vim.opt.paste = not vim.opt.paste:get()
 	print("paste mode: " .. tostring(vim.opt.paste:get()))
 end, { desc = "Toggle paste mode" })
+
+-- DEFAULT SPLIT SHOTCUTS
+vim.keymap.set("n", "<leader>h", ":split<CR><C-w>j", { desc = "Split Down" })
+vim.keymap.set("n", "<leader>v", ":vsplit<CR><C-w>l", { desc = "Split Right" })
+
+-- SPLIT & OPEN TERMINAL
+vim.keymap.set("n", "<leader>tv", function()
+	vim.cmd("rightbelow vsplit | terminal")
+	vim.cmd("startinsert")
+end, { desc = "Vertical Terminal on Right" })
+vim.keymap.set("n", "<leader>th", function()
+	vim.cmd("botright split | terminal")
+	--vim.cmd('resize 15')
+	vim.cmd("startinsert")
+end, { desc = "Horizontal Terminal at Bottom" })
+
+-- OVERRIDE DEFAULT SPLIT NAVIGATION
+vim.keymap.set("n", "A-Left", "<C-w>h", { desc = "Move left" })
+vim.keymap.set("n", "A-Down", "<C-w>j", { desc = "Move down" })
+vim.keymap.set("n", "A-Up", "<C-w>k", { desc = "Move up" })
+vim.keymap.set("n", "A-Right", "<C-w>l", { desc = "Move right" })
