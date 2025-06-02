@@ -1,151 +1,37 @@
--- init.lua
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
+vim.g.mapleader = " "
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		lazypath,
-	})
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
+
 vim.opt.rtp:prepend(lazypath)
 
+local lazy_config = require "configs.lazy"
+
+-- load plugins
 require("lazy").setup({
-	-- plugins
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-	{ "tpope/vim-commentary" },
-	{
-		"preservim/nerdtree",
-		lazy = false,
-		config = function()
-			vim.g.NERDTreeShowHidden = 1
-		end,
-	},
-	{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
-	{
-		"stevearc/conform.nvim",
-		opts = {
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_fallback = true,
-			},
-			formatters_by_ft = {
-				lua = { "stylua" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				python = { "black" },
-				sh = { "shfmt" },
-				json = { "prettier" },
-				html = { "prettier" },
-				css = { "prettier" },
-			},
-		},
-	},
-	{
-		"echasnovski/mini.icons",
-		version = false,
-		config = function()
-			require("mini.icons").setup()
-		end,
-	},
-	{
-		"monkoose/neocodeium",
-		event = "VeryLazy",
-		config = function()
-			local neocodeium = require("neocodeium")
-			neocodeium.setup()
-			vim.keymap.set("i", "<Enter>", neocodeium.accept)
-		end,
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/vim-vsnip",
-		},
-		config = function()
-			local cmp = require("cmp")
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "buffer" },
-					{ name = "path" },
-					{ name = "neocodeium" },
-				}),
-			})
-		end,
-	},
-})
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
 
--- Set colorscheme
-vim.cmd.colorscheme("catppuccin")
+  { import = "plugins" },
+}, lazy_config)
 
--- Line Numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
 
--- Tabs & Indentations
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true
+require "options"
+require "autocmds"
 
--- Search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Appearance
-vim.opt.termguicolors = true
-vim.opt.signcolumn = "yes"
-
--- Other
-vim.opt.clipboard = "unnamedplus"
-vim.opt.cursorline = true
-vim.opt.paste = true
-
--- Keybindings
-vim.keymap.set("n", "<leader>n", ":NERDTreeToggle<CR>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<leader>f", function()
-	require("conform").format({ async = true, lsp_fallback = true })
-end, { desc = "Format file" })
-vim.keymap.set("n", "<F2>", function()
-	vim.opt.paste = not vim.opt.paste:get()
-	print("paste mode: " .. tostring(vim.opt.paste:get()))
-end, { desc = "Toggle paste mode" })
-
--- DEFAULT SPLIT SHOTCUTS
-vim.keymap.set("n", "<leader>h", ":split<CR><C-w>j", { desc = "Split Down" })
-vim.keymap.set("n", "<leader>v", ":vsplit<CR><C-w>l", { desc = "Split Right" })
-
--- SPLIT & OPEN TERMINAL
-vim.keymap.set("n", "<leader>tv", function()
-	vim.cmd("rightbelow vsplit | terminal")
-	vim.cmd("startinsert")
-end, { desc = "Vertical Terminal on Right" })
-vim.keymap.set("n", "<leader>th", function()
-	vim.cmd("botright split | terminal")
-	--vim.cmd('resize 15')
-	vim.cmd("startinsert")
-end, { desc = "Horizontal Terminal at Bottom" })
-
--- OVERRIDE DEFAULT SPLIT NAVIGATION
-vim.keymap.set("n", "A-Left", "<C-w>h", { desc = "Move left" })
-vim.keymap.set("n", "A-Down", "<C-w>j", { desc = "Move down" })
-vim.keymap.set("n", "A-Up", "<C-w>k", { desc = "Move up" })
-vim.keymap.set("n", "A-Right", "<C-w>l", { desc = "Move right" })
+vim.schedule(function()
+  require "mappings"
+end)
