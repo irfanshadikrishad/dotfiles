@@ -9,13 +9,13 @@ sudo apt install stow
 Clone the repo
 
 ```bash
-https://github.com/irfanshadikrishad/.dotfiles.git
+https://github.com/irfanshadikrishad/dotfiles.git
 ```
 
 Go to the dotfiles directory
 
 ```bash
-cd .dotfiles
+cd dotfiles
 ```
 
 Install the configs
@@ -66,11 +66,11 @@ This will create a symbolic link like:
 ~/.gitconfig -> ~/.dotfiles/git/.gitconfig
 ```
 
-If Symlink Is Not Created
+If Symlink Is Not Created —
 Sometimes symlinks aren’t created if the target path is misaligned. In that case, force the correct target using:
 
 ```bash
-stow -v --target=$HOME git
+stow -v --target=$HOME [package_folder_name]
 ```
 
 Example structure
