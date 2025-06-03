@@ -1,7 +1,7 @@
 [user]
 	name = Irfan Shadik Rishad
 	email = 77362427+irfanshadikrishad@users.noreply.github.com
-	signingKey = 55AAAB04E67AF604
+	signingkey = 55AAAB04E67AF604
 [commit]
 	gpgsign = true
 [credential "https://github.com"]
@@ -17,3 +17,5 @@
 	required = true
 [init]
 	defaultBranch = master
+[pull]
+	rebase = false
