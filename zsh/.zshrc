@@ -36,7 +36,7 @@ ZSH_THEME="pixegami-agnoster"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -95,6 +95,10 @@ export PATH="$PATH:$(npm config get prefix)/bin"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias n="nvim"
+alias nfetch="neofetch"
+alias apt-update="sudo apt update && sudo apt upgrade && sudo apt autoremove -y"
+alias snap-update="sudo snap refresh"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

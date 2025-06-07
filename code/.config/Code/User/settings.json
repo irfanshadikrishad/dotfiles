@@ -1,0 +1,15 @@
+{
+  "workbench.colorTheme": "Meow",
+  "workbench.iconTheme": "icons",
+  "explorer.confirmDragAndDrop": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "workbench.experimental.share.enabled": true,
+  "files.autoSave": "afterDelay",
+  "workbench.startupEditor": "none",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "JetBrains Mono",
+  "terminal.integrated.cursorBlinking": true,
+  "editor.fontVariations": false
+}
