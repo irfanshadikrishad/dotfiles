@@ -1,0 +1,260 @@
+[
+  {
+    "identifier": {
+      "id": "esbenp.prettier-vscode",
+      "uuid": "96fa4707-6983-4489-b7c5-d5ffdfdcce90"
+    },
+    "version": "11.0.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/esbenp.prettier-vscode-11.0.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "esbenp.prettier-vscode-11.0.0",
+    "metadata": {
+      "installedTimestamp": 1746468552112,
+      "pinned": false,
+      "source": "gallery",
+      "id": "96fa4707-6983-4489-b7c5-d5ffdfdcce90",
+      "publisherId": "d16f4e39-2ffb-44e3-9c0d-79d873570e3a",
+      "publisherDisplayName": "Prettier",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ritwickdey.liveserver",
+      "uuid": "46cc5bbd-b098-4568-9b87-f91e07d26f2d"
+    },
+    "version": "5.7.9",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/ritwickdey.liveserver-5.7.9",
+      "scheme": "file"
+    },
+    "relativeLocation": "ritwickdey.liveserver-5.7.9",
+    "metadata": {
+      "installedTimestamp": 1746468547990,
+      "pinned": false,
+      "source": "gallery",
+      "id": "46cc5bbd-b098-4568-9b87-f91e07d26f2d",
+      "publisherId": "17fd9a78-e430-4a78-add2-ade4a8830352",
+      "publisherDisplayName": "Ritwick Dey",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "xabikos.javascriptsnippets",
+      "uuid": "a2cec723-5349-460d-9de9-0fd1f8d3456f"
+    },
+    "version": "1.8.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/xabikos.javascriptsnippets-1.8.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "xabikos.javascriptsnippets-1.8.0",
+    "metadata": {
+      "installedTimestamp": 1746468588568,
+      "pinned": false,
+      "source": "gallery",
+      "id": "a2cec723-5349-460d-9de9-0fd1f8d3456f",
+      "publisherId": "8961c3fe-3ec6-429d-886a-50b5af362a88",
+      "publisherDisplayName": "charalampos karypidis",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "zhuangtongfa.material-theme",
+      "uuid": "26a529c9-2654-4b95-a63f-02f6a52429e6"
+    },
+    "version": "3.19.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/zhuangtongfa.material-theme-3.19.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "zhuangtongfa.material-theme-3.19.0",
+    "metadata": {
+      "installedTimestamp": 1746468604091,
+      "pinned": false,
+      "source": "gallery",
+      "id": "26a529c9-2654-4b95-a63f-02f6a52429e6",
+      "publisherId": "8ae75bda-ec22-4a17-9340-abf1a20beca9",
+      "publisherDisplayName": "binaryify",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "tal7aouy.icons",
+      "uuid": "dcd805cf-7bf1-458e-8739-26a6077c784f"
+    },
+    "version": "3.8.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/tal7aouy.icons-3.8.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "tal7aouy.icons-3.8.0",
+    "metadata": {
+      "installedTimestamp": 1746475619276,
+      "pinned": false,
+      "source": "gallery",
+      "id": "dcd805cf-7bf1-458e-8739-26a6077c784f",
+      "publisherId": "bc6e1246-1061-4dec-a2c3-91280d192974",
+      "publisherDisplayName": "Mhammed Talhaouy",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "irfanshadikrishad.meow",
+      "uuid": "70e7407d-687c-4d83-9641-1df2bf9ea1dc"
+    },
+    "version": "3.1.1",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/irfanshadikrishad.meow-3.1.1",
+      "scheme": "file"
+    },
+    "relativeLocation": "irfanshadikrishad.meow-3.1.1",
+    "metadata": {
+      "installedTimestamp": 1746891922613,
+      "pinned": false,
+      "source": "gallery",
+      "id": "70e7407d-687c-4d83-9641-1df2bf9ea1dc",
+      "publisherId": "7cd4f551-cd4f-4098-b4a5-359b046aef5d",
+      "publisherDisplayName": "Irfan Shadik Rishad",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "catppuccin.catppuccin-vsc",
+      "uuid": "69264e4d-cd3b-468a-8f2b-e69673c7d864"
+    },
+    "version": "3.17.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/catppuccin.catppuccin-vsc-3.17.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "catppuccin.catppuccin-vsc-3.17.0",
+    "metadata": {
+      "installedTimestamp": 1748498168311,
+      "pinned": false,
+      "source": "gallery",
+      "id": "69264e4d-cd3b-468a-8f2b-e69673c7d864",
+      "publisherId": "e7d2ed61-53e0-4dd4-afbe-f536c3bb4316",
+      "publisherDisplayName": "Catppuccin",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "catppuccin.catppuccin-vsc-pack",
+      "uuid": "27c20910-92b3-4f79-936a-d2e8470376d8"
+    },
+    "version": "1.0.2",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/catppuccin.catppuccin-vsc-pack-1.0.2",
+      "scheme": "file"
+    },
+    "relativeLocation": "catppuccin.catppuccin-vsc-pack-1.0.2",
+    "metadata": {
+      "installedTimestamp": 1748498168312,
+      "pinned": false,
+      "source": "gallery",
+      "id": "27c20910-92b3-4f79-936a-d2e8470376d8",
+      "publisherId": "e7d2ed61-53e0-4dd4-afbe-f536c3bb4316",
+      "publisherDisplayName": "Catppuccin",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "catppuccin.catppuccin-vsc-icons",
+      "uuid": "625b9abd-dfac-405b-bf34-e65f46e2f22f"
+    },
+    "version": "1.21.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/irfanshadikrishad/.vscode/extensions/catppuccin.catppuccin-vsc-icons-1.21.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "catppuccin.catppuccin-vsc-icons-1.21.0",
+    "metadata": {
+      "installedTimestamp": 1748498168311,
+      "pinned": false,
+      "source": "gallery",
+      "id": "625b9abd-dfac-405b-bf34-e65f46e2f22f",
+      "publisherId": "e7d2ed61-53e0-4dd4-afbe-f536c3bb4316",
+      "publisherDisplayName": "Catppuccin",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": { "id": "golang.go" },
+    "version": "0.46.1",
+    "location": {
+      "$mid": 1,
+      "fsPath": "/home/irfanshadikrishad/.vscode/extensions/golang.go-0.46.1",
+      "external": "file:///home/irfanshadikrishad/.vscode/extensions/golang.go-0.46.1",
+      "path": "/home/irfanshadikrishad/.vscode/extensions/golang.go-0.46.1",
+      "scheme": "file"
+    },
+    "relativeLocation": "golang.go-0.46.1",
+    "metadata": {
+      "installedTimestamp": 1748500370236,
+      "source": "gallery",
+      "id": "d6f6cfea-4b6f-41f4-b571-6ad2ab7918da",
+      "publisherId": "dbf6ae0a-da75-4167-ac8b-75b4512f2153",
+      "publisherDisplayName": "Go Team at Google",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  }
+]
