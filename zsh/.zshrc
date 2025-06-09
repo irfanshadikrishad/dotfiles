@@ -101,6 +101,8 @@ alias snap-update="sudo snap refresh"
 alias gits="git status"
 alias gita="git add ."
 alias gitl="git log --oneline"
+alias xampp="sudo /opt/lampp/lampp"
+alias stop-apache="sudo service apache2 stop"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

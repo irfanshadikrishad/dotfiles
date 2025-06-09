@@ -15,6 +15,9 @@ local options = {
     scss = { "prettier" },
     less = { "prettier" },
     graphql = { "prettier" },
+    go = { "goimports", "gofmt" },
+    python = { "black" },
+    rust = { "rustfmt" },
   },
 
   format_on_save = {
