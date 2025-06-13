@@ -66,5 +66,18 @@ return {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
   },
-  { "nvzone/showkeys", cmd = "ShowKeysToggle", opts = {} },
+  {
+    "nvzone/showkeys",
+    cmd = "ShowKeysToggle",
+    opts = { winopts = {
+      border = "none",
+    }, timeout = 5, maxkeys = 3 },
+  },
+  {
+    "akinsho/git-conflict.nvim",
+    version = "*",
+    config = true,
+  },
+  { "lewis6991/gitsigns.nvim", opts = { current_line_blame = true } },
+  { "tpope/vim-fugitive" },
 }
