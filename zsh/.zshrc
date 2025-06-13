@@ -92,7 +92,9 @@ export PATH="$PATH:$(npm config get prefix)/bin"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-# Aliases
+#-----------------------
+#------------- Aliases -
+#-----------------------
 alias zshconfig="nvim ~/.zshrc"
 alias n="nvim"
 alias nfetch="neofetch"
@@ -103,6 +105,8 @@ alias gita="git add ."
 alias gitl="git log --oneline"
 alias xampp="sudo /opt/lampp/lampp"
 alias stop-apache="sudo service apache2 stop"
+alias zen="~/apps/zen/zen"
+alias reload-zsh="source ~/.zshrc"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -113,3 +117,13 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+#-----------------------
+#----- Shell functions -
+#-----------------------
+
+function npm-update() {
+  npm list -g
+  npm outdated -g
+  npm update -g
+}
