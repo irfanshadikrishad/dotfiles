@@ -30,18 +30,6 @@ return {
     cmd = { "Typr", "TyprStats" },
   },
   {
-    "nvzone/showkeys",
-    cmd = "ShowKeysToggle",
-    opts = {},
-    {
-      "monkoose/neocodeium",
-      event = "VeryLazy",
-      config = function()
-        local neocodeium = require "neocodeium"
-        neocodeium.setup()
-        vim.keymap.set("i", "<A-f>", neocodeium.accept)
-      end,
-    },
     { "nvzone/volt", lazy = true },
     {
       "nvzone/minty",
@@ -78,4 +66,5 @@ return {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
   },
+  { "nvzone/showkeys", cmd = "ShowKeysToggle", opts = {} },
 }

@@ -4,9 +4,14 @@
 
 ---@type ChadrcConfig
 local M = {}
+local highlights = {
+  add = {
+    NvCyan = { fg = "#252525", bg = "#00ffff" },
+  },
+}
 
 M.base46 = {
-  theme = "flex-light",
+  theme = "catppuccin",
 
   hl_override = {
     Comment = { italic = true },
@@ -28,8 +33,6 @@ M.nvdash = {
     "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
     "                                 ",
     "                                 ",
-    "       @irfanshadikrishad        ",
-    "                                 ",
   },
   buttons = {
     { txt = "  Find File", keys = "ff", cmd = "Telescope find_files" },
@@ -37,8 +40,6 @@ M.nvdash = {
     { txt = "󰈭  Find Word", keys = "fw", cmd = "Telescope live_grep" },
     { txt = "󱥚  Themes", keys = "th", cmd = ":lua require('nvchad.themes').open()" },
     { txt = "  Mappings", keys = "ch", cmd = "NvCheatsheet" },
-
-    -- { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
 
     {
       txt = function()
@@ -49,8 +50,6 @@ M.nvdash = {
       hl = "NvDashFooter",
       no_gap = true,
     },
-
-    -- { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
   },
 }
 
@@ -61,6 +60,7 @@ M.term = {
 }
 
 M.ui = {
+  hl_add = highlights.add,
   tabufline = {
     lazyload = false,
   },
