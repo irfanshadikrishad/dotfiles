@@ -38,9 +38,35 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
     opts = {
       signs = true,
+      sign_priority = 10,
+      gui_style = { fg = "NONE", bg = "BOLD" },
+      keywords = {
+        FIX = { -- BUG: for bugs or issues
+          icon = " ",
+          color = "#f38ba8",
+          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+        },
+        -- TODO: for todo
+        TODO = { icon = " ", color = "#a6e3a1" },
+        -- HACK: This is hack
+        HACK = { icon = " ", color = "#fab387" },
+        -- WARN: this is warn
+        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+        -- PERF: for performance
+        PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        -- NOTE: any notes?
+        NOTE = { icon = " ", color = "#ca9ee6", alt = { "INFO" } },
+        -- TEST: Testing codes here
+        TEST = { icon = " ", color = "#94e2d5", alt = { "TESTING", "PASSED", "FAILED" } },
+        -- DONE: complete
+        DONE = { icon = " ", color = "#89b4fa", alt = { "COMPLETE" } },
+      },
+      highlight = {
+        multiline = true,
+      },
     },
   },
   {
