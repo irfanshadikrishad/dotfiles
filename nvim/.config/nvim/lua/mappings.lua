@@ -11,6 +11,7 @@ map("n", "<leader>ft", function()
   if ok then
     floaterm.toggle()
   end
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = "Toggle floaterm." })
+map("n", "<leader>-", ":Oil --float<CR>", { desc = "Opens Oil file manager in float mode." })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

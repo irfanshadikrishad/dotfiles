@@ -98,7 +98,8 @@ export PATH="$PATH:$(npm config get prefix)/bin"
 alias zshconfig="nvim ~/.zshrc"
 alias n="nvim"
 alias nfetch="neofetch"
-alias apt-update="sudo apt update && sudo apt upgrade && sudo apt autoremove -y"
+alias fetch="fastfetch"
+alias apt-update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
 alias snap-update="sudo snap refresh"
 alias gits="git status"
 alias gita="git add ."
@@ -107,6 +108,9 @@ alias xampp="sudo /opt/lampp/lampp"
 alias stop-apache="sudo service apache2 stop"
 alias zen="~/apps/zen/zen"
 alias reload-zsh="source ~/.zshrc"
+alias nig='npm install -g "$@" && ~/laboratory/dotfiles/scripts/update-npm-packages.sh'
+alias nug='npm uninstall -g "$@" && ~/laboratory/dotfiles/scripts/update-npm-packages.sh'
+alias nig-x='~/laboratory/dotfiles/scripts/install-npm-globals.sh'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -126,4 +130,10 @@ function npm-update() {
   npm list -g
   npm outdated -g
   npm update -g
+}
+
+function update() {
+  apt-update
+  snap-update
+  npm-update
 }
