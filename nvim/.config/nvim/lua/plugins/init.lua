@@ -49,19 +49,19 @@ return {
           color = "#f38ba8",
           alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
         },
-        -- TODO: for todo
-        TODO = { icon = " ", color = "#a6e3a1" },
-        -- HACK: This is hack
-        HACK = { icon = " ", color = "#fab387" },
-        -- WARN: this is warn
+        --  TODO: for todo
+        TODO = { icon = " ", color = "#7287fd" },
+        --  HACK: This is hack
+        HACK = { icon = " ", color = "#fab387" },
+        --  WARN: this is warn
         WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-        -- PERF: for performance
+        --  PERF: for performance
         PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-        -- NOTE: any notes?
+        --  NOTE: any notes?
         NOTE = { icon = " ", color = "#ca9ee6", alt = { "INFO" } },
-        -- TEST: Testing codes here
+        --  TEST: Testing codes here
         TEST = { icon = " ", color = "#94e2d5", alt = { "TESTING", "PASSED", "FAILED" } },
-        -- DONE: complete
+        --  DONE: complete
         DONE = { icon = " ", color = "#89b4fa", alt = { "COMPLETE" } },
       },
       highlight = {
@@ -120,5 +120,15 @@ return {
     dependencies = "nvzone/volt",
     opts = {},
     cmd = "FloatermToggle",
+  },
+  { "rafamadriz/friendly-snippets" },
+  { "echasnovski/mini.nvim", version = "*" },
+  {
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = { default_file_explorer = false, view_options = { show_hidden = true }, float = { padding = 10 } },
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    lazy = false,
   },
 }
