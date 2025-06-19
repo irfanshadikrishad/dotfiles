@@ -132,8 +132,42 @@ function npm-update() {
   npm update -g
 }
 
-function update() {
-  apt-update
-  snap-update
-  npm-update
+update() {
+  local start_time=$(date +%s)  # Track start time
+
+  echo -e "\n\033[1;36m===== UPDATING SYSTEM =====\033[0m"
+
+  # --------------------------
+  # APT (Debian/Ubuntu Packages)
+  # --------------------------
+  echo -e "\n\033[1;33m[1/3] Updating APT packages...\033[0m"
+  sudo apt update && \
+  sudo apt upgrade -y && \
+  sudo apt full-upgrade -y && \
+  sudo apt autoremove -y && \
+  sudo apt clean
+
+  # --------------------------
+  # Snap Packages
+  # --------------------------
+  echo -e "\n\033[1;33m[2/3] Updating Snap packages...\033[0m"
+  sudo snap refresh
+
+  # --------------------------
+  # NPM (if installed)
+  # --------------------------
+  if command -v npm &> /dev/null; then
+    echo -e "\n\033[1;33m[3/3] Updating NPM packages...\033[0m"
+    npm update -g
+  else
+    echo -e "\n\033[1;31mNPM not installed. Skipping...\033[0m"
+  fi
+
+  # --------------------------
+  # Completion & Time Tracking
+  # --------------------------
+  local end_time=$(date +%s)
+  local total_time=$((end_time - start_time))
+
+  echo -e "\n\033[1;32m✔ All updates completed in ${total_time} seconds.\033[0m"
 }
