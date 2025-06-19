@@ -13,5 +13,6 @@ map("n", "<leader>ft", function()
   end
 end, { noremap = true, silent = true, desc = "Toggle floaterm." })
 map("n", "<leader>-", ":Oil --float<CR>", { desc = "Opens Oil file manager in float mode." })
+map("v", "<leader>0", ":CodeSnap<CR>", { desc = "Snaps the selected code." })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
