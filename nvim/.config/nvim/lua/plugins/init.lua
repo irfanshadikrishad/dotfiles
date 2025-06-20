@@ -44,24 +44,17 @@ return {
       sign_priority = 10,
       gui_style = { fg = "NONE", bg = "BOLD" },
       keywords = {
-        FIX = { -- BUG: for bugs or issues
+        FIX = {
           icon = " ",
           color = "#f38ba8",
           alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
         },
-        --  TODO: for todo
         TODO = { icon = " ", color = "#7287fd" },
-        --  HACK: This is hack
         HACK = { icon = " ", color = "#fab387" },
-        --  WARN: this is warn
         WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-        --  PERF: for performance
         PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-        --  NOTE: any notes?
         NOTE = { icon = " ", color = "#ca9ee6", alt = { "INFO" } },
-        --  TEST: Testing codes here
         TEST = { icon = " ", color = "#94e2d5", alt = { "TESTING", "PASSED", "FAILED" } },
-        --  DONE: complete
         DONE = { icon = " ", color = "#89b4fa", alt = { "COMPLETE" } },
       },
       highlight = {
@@ -134,9 +127,9 @@ return {
   {
     "mistricky/codesnap.nvim",
     build = "make",
-    cmd = { "CodeSnap" },
+    cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapHighlight", "CodeSnapHighlightSave", "CodeSnapASCII" },
     opts = {
-      save_path = "~/Pictures",
+      save_path = "~/Pictures/CodeSnap/",
       has_breadcrumbs = true,
       bg_theme = "sea",
       show_workspace = false,
@@ -150,4 +143,26 @@ return {
       bg_padding = 0,
     },
   },
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {}
+    end,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
+  {
+    "Exafunction/windsurf.vim",
+    event = "BufEnter",
+  },
+  { "hrsh7th/nvim-cmp" },
 }
