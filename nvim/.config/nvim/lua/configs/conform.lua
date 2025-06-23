@@ -10,7 +10,6 @@ local options = {
     json = { "prettier" },
     jsonc = { "prettier" },
     markdown = { "prettier" },
-    yaml = { "prettier" },
     toml = { "prettier" },
     scss = { "prettier" },
     less = { "prettier" },
@@ -18,6 +17,7 @@ local options = {
     go = { "goimports", "gofmt" },
     python = { "black" },
     rust = { "rustfmt" },
+    yaml = { "yamlfix", "yamlfmt" },
   },
 
   format_on_save = {

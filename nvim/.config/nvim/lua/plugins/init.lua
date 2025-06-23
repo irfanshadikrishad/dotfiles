@@ -120,8 +120,12 @@ return {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = { default_file_explorer = false, view_options = { show_hidden = true }, float = { padding = 10 } },
-    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    opts = {
+      default_file_explorer = false,
+      view_options = { show_hidden = true },
+      float = { padding = 10 },
+      delete_to_trash = true,
+    },
     lazy = false,
   },
   {
@@ -152,17 +156,48 @@ return {
     end,
   },
   {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    config = function()
+      local cmp = require "cmp"
+      cmp.setup {
+        sources = {
+          name = "codeium",
+        },
+        mapping = cmp.mapping.preset.insert {
+          ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = false, -- Don't confirm unless explicitly selected
+          },
+          ["<Tab>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+          ["<S-Tab>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+        },
+      }
+    end,
+  },
+  {
+    "Exafunction/windsurf.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup {}
+    end,
+  },
+  {
     "folke/noice.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      lsp = {
+        signature = {
+          enabled = false,
+        },
+      },
+    },
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
   },
-  {
-    "Exafunction/windsurf.vim",
-    event = "BufEnter",
-  },
-  { "hrsh7th/nvim-cmp" },
 }
