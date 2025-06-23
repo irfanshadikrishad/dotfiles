@@ -111,6 +111,7 @@ alias reload-zsh="source ~/.zshrc"
 alias nig='npm install -g "$@" && ~/laboratory/dotfiles/scripts/update-npm-packages.sh'
 alias nug='npm uninstall -g "$@" && ~/laboratory/dotfiles/scripts/update-npm-packages.sh'
 alias nig-x='~/laboratory/dotfiles/scripts/install-npm-globals.sh'
+alias dead="sudo shutdown -h now"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -145,6 +146,7 @@ update() {
   sudo apt upgrade -y && \
   sudo apt full-upgrade -y && \
   sudo apt autoremove -y && \
+  sudo apt modernize-sources -y && \
   sudo apt clean
 
   # --------------------------
@@ -158,7 +160,7 @@ update() {
   # --------------------------
   if command -v npm &> /dev/null; then
     echo -e "\n\033[1;33m[3/3] Updating NPM packages...\033[0m"
-    npm update -g
+    npm-update 
   else
     echo -e "\n\033[1;31mNPM not installed. Skipping...\033[0m"
   fi
