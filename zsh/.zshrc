@@ -96,6 +96,7 @@ export PATH="$PATH:$(npm config get prefix)/bin"
 #------------- Aliases -
 #-----------------------
 alias zshconfig="nvim ~/.zshrc"
+alias reload-zsh="source ~/.zshrc"
 alias n="nvim"
 alias nfetch="neofetch"
 alias fetch="fastfetch"
@@ -107,11 +108,8 @@ alias gitl="git log --oneline"
 alias xampp="sudo /opt/lampp/lampp"
 alias stop-apache="sudo service apache2 stop"
 alias zen="~/apps/zen/zen"
-alias reload-zsh="source ~/.zshrc"
-alias nig='npm install -g "$@" && ~/laboratory/dotfiles/scripts/update-npm-packages.sh'
-alias nug='npm uninstall -g "$@" && ~/laboratory/dotfiles/scripts/update-npm-packages.sh'
-alias nig-x='~/laboratory/dotfiles/scripts/install-npm-globals.sh'
-alias dead="sudo shutdown -h now"
+alias off="shutdown -h now"
+alias restart="reboot"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
