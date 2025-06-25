@@ -141,7 +141,7 @@ update() {
   # --------------------------
   echo -e "\n\033[1;33m[1/3] Updating APT packages...\033[0m"
   sudo apt update && \
-  sudo apt upgrade -y && \
+  sudo apt upgrade -y -o APT::Get::Always-Include-Phased-Updates=true && \
   sudo apt full-upgrade -y && \
   sudo apt autoremove -y && \
   sudo apt modernize-sources -y && \
