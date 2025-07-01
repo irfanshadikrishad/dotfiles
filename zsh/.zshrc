@@ -131,6 +131,15 @@ function npm-update() {
   npm update -g
 }
 
+function apt-update(){ 
+  sudo apt update && \
+  sudo apt upgrade -y -o APT::Get::Always-Include-Phased-Updates=true && \
+  sudo apt full-upgrade -y && \
+  sudo apt autoremove -y && \
+  sudo apt modernize-sources -y && \
+  sudo apt clean
+}
+
 update() {
   local start_time=$(date +%s)  # Track start time
 
@@ -140,12 +149,7 @@ update() {
   # APT (Debian/Ubuntu Packages)
   # --------------------------
   echo -e "\n\033[1;33m[1/3] Updating APT packages...\033[0m"
-  sudo apt update && \
-  sudo apt upgrade -y -o APT::Get::Always-Include-Phased-Updates=true && \
-  sudo apt full-upgrade -y && \
-  sudo apt autoremove -y && \
-  sudo apt modernize-sources -y && \
-  sudo apt clean
+  apt-update
 
   # --------------------------
   # Snap Packages

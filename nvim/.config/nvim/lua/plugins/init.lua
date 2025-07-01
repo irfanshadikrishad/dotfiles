@@ -23,17 +23,7 @@ return {
       },
     },
   },
-  {
-    { "nvzone/volt", lazy = true },
-  },
+  { "nvzone/volt", lazy = true },
   { "rafamadriz/friendly-snippets" },
   { "echasnovski/mini.nvim", version = "*" },
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup {}
-    end,
-  },
 }
