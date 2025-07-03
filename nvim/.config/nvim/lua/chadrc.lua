@@ -11,7 +11,7 @@ local highlights = {
 }
 
 M.base46 = {
-  theme = "catppuccin",
+  theme = "nightfox",
 
   hl_override = {
     Comment = { italic = true },

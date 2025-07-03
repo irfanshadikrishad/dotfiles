@@ -13,13 +13,20 @@ return {
   { import = "nvchad.blink.lazyspec" },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    build = ":TSUpdate",
     opts = {
+      highlight = { enabled = true },
+      indent = { enabled = true },
       ensure_installed = {
         "vim",
         "lua",
         "vimdoc",
         "html",
         "css",
+        "jsdoc",
+        "javascript",
+        "typescript",
       },
     },
   },
