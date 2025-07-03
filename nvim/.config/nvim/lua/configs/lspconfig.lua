@@ -23,6 +23,11 @@ vim.lsp.config.bashls = {
 }
 vim.lsp.config.ts_ls = {
   filetypes = { "typescript" },
+  settings = {
+    implicitProjectConfiguration = {
+      checkJs = true,
+    },
+  },
 }
 
 vim.lsp.enable(servers)
