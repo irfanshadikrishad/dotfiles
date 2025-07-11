@@ -15,6 +15,7 @@ local servers = {
   "ts_ls",
   "yamlls",
   "denols",
+  "dockerls",
 }
 
 vim.lsp.config.denols = { NO_COLOR = false }
@@ -26,6 +27,17 @@ vim.lsp.config.ts_ls = {
   settings = {
     implicitProjectConfiguration = {
       checkJs = true,
+    },
+  },
+}
+vim.lsp.config.dockerls = {
+  settings = {
+    docker = {
+      languageserver = {
+        formatter = {
+          ignoreMultilineInstructions = false,
+        },
+      },
     },
   },
 }
