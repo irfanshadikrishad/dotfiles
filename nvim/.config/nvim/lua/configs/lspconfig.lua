@@ -16,6 +16,7 @@ local servers = {
   "yamlls",
   "denols",
   "dockerls",
+  "nginx_language_server",
 }
 
 vim.lsp.config.denols = { NO_COLOR = false }
