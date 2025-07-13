@@ -121,6 +121,8 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
+export DOCKER_HOST=unix:///var/run/docker.sock
+
 #-----------------------
 #----- Shell functions -
 #-----------------------
