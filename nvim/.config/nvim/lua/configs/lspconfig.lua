@@ -19,12 +19,15 @@ local servers = {
   "nginx_language_server",
 }
 
-vim.lsp.config.denols = { NO_COLOR = false }
+vim.lsp.config.denols = {
+  NO_COLOR = false,
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
+}
 vim.lsp.config.bashls = {
   { "bash", "sh" },
 }
 vim.lsp.config.ts_ls = {
-  filetypes = { "typescript" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   settings = {
     implicitProjectConfiguration = {
       checkJs = true,

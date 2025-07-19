@@ -119,6 +119,14 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
+# ----------------------
+# -- Android Development
+# ---------------------- 
+export ANDROID_HOME=$HOME/Android
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 export DOCKER_HOST=unix:///var/run/docker.sock
