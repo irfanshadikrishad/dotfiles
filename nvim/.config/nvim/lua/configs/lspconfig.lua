@@ -14,20 +14,20 @@ local servers = {
   "tailwindcss",
   "ts_ls",
   "yamlls",
-  "denols",
+  -- "denols",
   "dockerls",
   "nginx_language_server",
 }
 
-vim.lsp.config.denols = {
-  NO_COLOR = false,
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
-}
+-- vim.lsp.config.denols = {
+--   NO_COLOR = false,
+--   filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
+-- }
 vim.lsp.config.bashls = {
   { "bash", "sh" },
 }
 vim.lsp.config.ts_ls = {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
   settings = {
     implicitProjectConfiguration = {
       checkJs = true,

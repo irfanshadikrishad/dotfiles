@@ -108,8 +108,8 @@ alias gitl="git log --oneline"
 alias xampp="sudo /opt/lampp/lampp"
 alias stop-apache="sudo service apache2 stop"
 alias zen="~/apps/zen/zen"
-alias off="shutdown -h now"
-alias restart="reboot"
+alias off="systemctl poweroff -i"
+alias restart="systemctl reboot -i"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -141,9 +141,9 @@ function npm-update() {
   npm update -g
 }
 
-function apt-update(){ 
+function apt-update() {
   sudo apt update && \
-  sudo apt upgrade -y -o APT::Get::Always-Include-Phased-Updates=true && \
+  sudo apt -o APT::Get::Always-Include-Phased-Updates=true upgrade -y && \
   sudo apt full-upgrade -y && \
   sudo apt autoremove -y && \
   sudo apt modernize-sources -y && \
