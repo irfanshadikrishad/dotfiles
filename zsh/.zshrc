@@ -97,19 +97,28 @@ export PATH="$PATH:$(npm config get prefix)/bin"
 #-----------------------
 alias zshconfig="nvim ~/.zshrc"
 alias reload-zsh="source ~/.zshrc"
+
 alias n="nvim"
 alias nfetch="neofetch"
 alias fetch="fastfetch"
 alias apt-update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
 alias snap-update="sudo snap refresh"
+
 alias gits="git status"
 alias gita="git add ."
 alias gitl="git log --oneline"
+
 alias xampp="sudo /opt/lampp/lampp"
 alias stop-apache="sudo service apache2 stop"
+
 alias zen="~/apps/zen/zen"
+
 alias off="systemctl poweroff -i"
 alias restart="systemctl reboot -i"
+
+alias warp-c="warp-cli connect"
+alias warp-d="warp-cli disconnect"
+alias warp-s="warp-cli status"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
