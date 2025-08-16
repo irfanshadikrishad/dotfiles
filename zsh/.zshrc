@@ -108,6 +108,10 @@ alias gits="git status"
 alias gita="git add ."
 alias gitl="git log --oneline"
 
+alias npmf="npm run format"
+alias npmd="npm run dev"
+alias npms="npm run start"
+
 alias xampp="sudo /opt/lampp/lampp"
 alias stop-apache="sudo service apache2 stop"
 

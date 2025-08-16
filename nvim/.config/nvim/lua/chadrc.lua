@@ -4,11 +4,6 @@
 
 ---@type ChadrcConfig
 local M = {}
-local highlights = {
-  add = {
-    NvCyan = { fg = "#252525", bg = "#00ffff" },
-  },
-}
 
 M.base46 = {
   theme = "nightfox",
@@ -60,7 +55,6 @@ M.term = {
 }
 
 M.ui = {
-  hl_add = highlights.add,
   tabufline = {
     lazyload = false,
   },
