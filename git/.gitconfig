@@ -19,3 +19,5 @@
 	defaultBranch = master
 [pull]
 	rebase = false
+[core]
+	editor = nvim
