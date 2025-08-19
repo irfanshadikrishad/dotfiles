@@ -33,3 +33,7 @@ map("n", "<M-Down>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
 -- Visual mode: Move selected block up/down
 map("v", "<M-Up>", ":m '<-2<CR>gv=gv", { desc = "Move block up", silent = true })
 map("v", "<M-Down>", ":m '>+1<CR>gv=gv", { desc = "Move block down", silent = true })
+
+-- Open File Buffer Switching
+map({ "n", "v" }, "N", ":bnext<CR>")
+map({ "n", "v" }, "P", ":bprevious<CR>")
