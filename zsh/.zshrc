@@ -111,6 +111,8 @@ alias gitl="git log --oneline"
 alias npmf="npm run format"
 alias npmd="npm run dev"
 alias npms="npm run start"
+alias npmb="npm run build"
+alias npmbs="npm run build && npm run start"
 
 alias xampp="sudo /opt/lampp/lampp"
 alias stop-apache="sudo service apache2 stop"
