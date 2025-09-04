@@ -27,6 +27,7 @@ return {
         "jsdoc",
         "javascript",
         "typescript",
+        "tsx",
       },
     },
   },
