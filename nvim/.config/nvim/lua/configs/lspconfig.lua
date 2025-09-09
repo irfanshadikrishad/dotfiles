@@ -14,15 +14,10 @@ local servers = {
   "tailwindcss",
   "ts_ls",
   "yamlls",
-  -- "denols",
   "dockerls",
   "nginx_language_server",
 }
 
--- vim.lsp.config.denols = {
---   NO_COLOR = false,
---   filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
--- }
 vim.lsp.config.bashls = {
   { "bash", "sh" },
 }
