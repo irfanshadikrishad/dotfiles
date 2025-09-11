@@ -53,8 +53,8 @@ button:hover {
 
 #workspaces button {
   padding: 0 5px;
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
   margin-right: 5px;
   border-radius: 5px;
   transition: 0.2s ease-in-out;
@@ -73,6 +73,7 @@ button:hover {
   background-color: #eb4d4b;
 }
 #workspaces button.active {
+  color: #cbb998;
   background-color: transparent;
 }
 
@@ -119,19 +120,19 @@ button:hover {
 }
 
 #clock {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #battery {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #battery.charging,
 #battery.plugged {
-  color: #ffffff;
-  background-color: #26a65b;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 @keyframes blink {
@@ -157,18 +158,18 @@ button:hover {
 }
 
 #power-profiles-daemon.performance {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #power-profiles-daemon.balanced {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #power-profiles-daemon.power-saver {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 label:focus {
@@ -176,18 +177,18 @@ label:focus {
 }
 
 #cpu {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #memory {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #disk {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #backlight {
@@ -195,8 +196,8 @@ label:focus {
 }
 
 #network {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #network.disconnected {
@@ -204,8 +205,8 @@ label:focus {
 }
 
 #pulseaudio {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #pulseaudio.muted {
@@ -223,8 +224,8 @@ label:focus {
 }
 
 #custom-media {
-  background-color: #66cc99;
-  color: #2a5c45;
+  background-color: #cbb998;
+  color: #202223;
   min-width: 100px;
 }
 
@@ -237,8 +238,8 @@ label:focus {
 }
 
 #temperature {
-  background-color: #4b352a;
-  color: #ca7842;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #temperature.critical {
@@ -268,8 +269,8 @@ label:focus {
 }
 
 #mpd {
-  background-color: #f0932b;
-  color: #2a5c45;
+  background-color: #cbb998;
+  color: #202223;
 }
 
 #mpd.disconnected {
@@ -285,16 +286,16 @@ label:focus {
 }
 
 #language {
-  background: #00b093;
-  color: #740864;
+  background-color: #cbb998;
+  color: #202223;
   padding: 0 5px;
   margin: 0 5px;
   min-width: 16px;
 }
 
 #keyboard-state {
-  background: #97e1ad;
-  color: #000000;
+  background-color: #cbb998;
+  color: #202223;
   padding: 0 0px;
   margin: 0 5px;
   min-width: 16px;
