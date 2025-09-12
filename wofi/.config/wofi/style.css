@@ -1,0 +1,40 @@
+window {
+  background-color: #1f2021;
+  color: #cbb998;
+  padding: 15px;
+}
+
+#entry {
+  padding: 5px 5px;
+  margin: 0 15px;
+  border-radius: 6px;
+  border: none;
+}
+
+#entry:selected {
+  background-color: #cbb998;
+  color: #1f2021;
+  box-shadow: none;
+  outline: none;
+}
+
+#entry:selected * {
+  color: #1f2021;
+}
+
+#input {
+  border: none;
+  padding: 5px 15px;
+  margin: 15px;
+  background-color: #222222;
+  color: #cbb998;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: none;
+}
+
+#input:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
