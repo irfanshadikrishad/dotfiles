@@ -1,3 +1,6 @@
+# Set SSH agent socket
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -173,20 +176,26 @@ update() {
   # --------------------------
   # APT (Debian/Ubuntu Packages)
   # --------------------------
-  echo -e "\n\033[1;33m[1/3] Updating APT packages...\033[0m"
+  echo -e "\n\033[1;33m[1/4] Updating APT packages...\033[0m"
   apt-update
 
   # --------------------------
   # Snap Packages
   # --------------------------
-  echo -e "\n\033[1;33m[2/3] Updating Snap packages...\033[0m"
+  echo -e "\n\033[1;33m[2/4] Updating Snap packages...\033[0m"
   sudo snap refresh
+
+  # --------------------------
+  # Pacman (Arch Packages) 
+  # --------------------------
+  echo -e "\n\033[1;33m[3/4] Updating Pacman packages...\033[0m"
+  sudo pacman -Syu --noconfirm 
 
   # --------------------------
   # NPM (if installed)
   # --------------------------
   if command -v npm &> /dev/null; then
-    echo -e "\n\033[1;33m[3/3] Updating NPM packages...\033[0m"
+    echo -e "\n\033[1;33m[4/4] Updating NPM packages...\033[0m"
     npm-update 
   else
     echo -e "\n\033[1;31mNPM not installed. Skipping...\033[0m"
