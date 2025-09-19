@@ -64,6 +64,7 @@ M.ui = {
     theme = "minimal", -- default | minimal | vscode | vscode_colored
     separator_style = "block", -- default/round/block/arrow
   },
+  file_ignore_patterns = { "node_modules", ".git/", "dist" },
 }
 
 return M
