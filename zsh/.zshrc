@@ -193,12 +193,6 @@ update() {
   sudo snap refresh
 
   # --------------------------
-  # Pacman (Arch Packages) 
-  # --------------------------
-  echo -e "\n\033[1;33m[3/4] Updating Pacman packages...\033[0m"
-  sudo pacman -Syu --noconfirm 
-
-  # --------------------------
   # NPM (if installed)
   # --------------------------
   if command -v npm &> /dev/null; then
