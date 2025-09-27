@@ -10,7 +10,6 @@ local servers = {
   "emmet_ls",
   "bashls",
   "jedi_language_server",
-  "gopls",
   "tailwindcss",
   "ts_ls",
   "yamlls",

@@ -183,20 +183,20 @@ update() {
   # --------------------------
   # APT (Debian/Ubuntu Packages)
   # --------------------------
-  echo -e "\n\033[1;33m[1/4] Updating APT packages...\033[0m"
+  echo -e "\n\033[1;33m[1/3] Updating APT packages...\033[0m"
   apt-update
 
   # --------------------------
   # Snap Packages
   # --------------------------
-  echo -e "\n\033[1;33m[2/4] Updating Snap packages...\033[0m"
+  echo -e "\n\033[1;33m[2/3] Updating Snap packages...\033[0m"
   sudo snap refresh
 
   # --------------------------
   # NPM (if installed)
   # --------------------------
   if command -v npm &> /dev/null; then
-    echo -e "\n\033[1;33m[4/4] Updating NPM packages...\033[0m"
+    echo -e "\n\033[1;33m[3/3] Updating NPM packages...\033[0m"
     npm-update 
   else
     echo -e "\n\033[1;31mNPM not installed. Skipping...\033[0m"
@@ -213,9 +213,7 @@ update() {
 
 yayUpdate(){ 
   yay -Syu --noconfirm && yay -Sc --noconfirm && yay -Yc --noconfirm
-
 }
-
 
 GITSTATUS_LOG_LEVEL=DEBUG
 
