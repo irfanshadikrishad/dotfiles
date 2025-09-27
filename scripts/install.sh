@@ -11,4 +11,17 @@ sudo apt install -y \
   stow \
   gh
 
-echo "✅ Installation completed successfully!"
+#Check Gnome-Shell Version
+gnome-shell --version
+
+# Install extensions
+git clone https://github.com/neuromorph/openbar.git \
+	~/.local/share/gnome-shell/extensions/openbar@neuromorph
+
+# Enable extensions
+gnome-extensions enable openbar@neuromorph
+
+# Show extensions list
+gnome-extensions list
+
+echo e "\n✅ Installation completed successfully!"
