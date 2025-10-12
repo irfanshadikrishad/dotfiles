@@ -135,6 +135,7 @@ alias restart="systemctl reboot -i"
 alias warp-c="warp-cli connect"
 alias warp-d="warp-cli disconnect"
 alias warp-s="warp-cli status"
+alias warp-r="warp-cli registration new"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

@@ -26,7 +26,7 @@ map("v", "<leader>1", ":CodeSnapSave<CR>", { desc = "Snaps and saves the selecte
 map("n", "<leader>tt", ":TimerlyToggle<CR>", { desc = "Toggle Timerly." })
 
 -- Move lines up/down
--- Normal mode: Move current line up/down
+-- Normal mode: Move current line up/down (M is Alt)
 map("n", "<M-Up>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
 map("n", "<M-Down>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
 
@@ -37,3 +37,14 @@ map("v", "<M-Down>", ":m '>+1<CR>gv=gv", { desc = "Move block down", silent = tr
 -- Open File Buffer Switching
 map({ "n", "v" }, "N", ":bnext<CR>")
 map({ "n", "v" }, "P", ":bprevious<CR>")
+
+-- Treewalker (movement)
+-- map({ "n", "v" }, "<C-k>", "<cmd>Treewalker Up<cr>", { silent = true })
+-- map({ "n", "v" }, "<C-j>", "<cmd>Treewalker Down<cr>", { silent = true })
+-- map({ "n", "v" }, "<C-h>", "<cmd>Treewalker Left<cr>", { silent = true })
+-- map({ "n", "v" }, "<C-l>", "<cmd>Treewalker Right<cr>", { silent = true })
+-- Treewalker (swapping)
+-- map("n", "<C-S-k>", "<cmd>Treewalker SwapUp<cr>", { silent = true })
+-- map("n", "<C-S-j>", "<cmd>Treewalker SwapDown<cr>", { silent = true })
+map("n", "<M-Left>", "<cmd>Treewalker SwapLeft<cr>", { silent = true })
+map("n", "<M-Right>", "<cmd>Treewalker SwapRight<cr>", { silent = true })
