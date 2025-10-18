@@ -48,3 +48,7 @@ map({ "n", "v" }, "P", ":bprevious<CR>")
 -- map("n", "<C-S-j>", "<cmd>Treewalker SwapDown<cr>", { silent = true })
 map("n", "<M-Left>", "<cmd>Treewalker SwapLeft<cr>", { silent = true })
 map("n", "<M-Right>", "<cmd>Treewalker SwapRight<cr>", { silent = true })
+
+-- Quickfix
+map("n", "<leader>qo", ":copen<CR>", { desc = "Open quickfix list" })
+map("n", "<leader>qc", ":cclose<CR>", { desc = "Close quickfix list" })
