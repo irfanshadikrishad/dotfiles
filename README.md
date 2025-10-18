@@ -66,8 +66,9 @@ This will create a symbolic link like:
 ~/.gitconfig -> ~/.dotfiles/git/.gitconfig
 ```
 
-If Symlink Is Not Created —
-Sometimes symlinks aren’t created if the target path is misaligned. In that case, force the correct target using:
+> [!IMPORTANT]
+> If Symlink Is Not Created:
+> Sometimes symlinks aren’t created if the target path is misaligned. In that case, force the correct target using:
 
 ```bash
 stow -v --target=$HOME [package_folder_name]
