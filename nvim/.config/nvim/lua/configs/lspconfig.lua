@@ -15,18 +15,22 @@ local servers = {
   "yamlls",
   "dockerls",
   "nginx_language_server",
+  "denols",
 }
 
 vim.lsp.config.bashls = {
   { "bash", "sh" },
 }
 vim.lsp.config.ts_ls = {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "javascript.jsx" },
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   settings = {
     implicitProjectConfiguration = {
       checkJs = true,
     },
   },
+}
+vim.lsp.denols = {
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
 }
 vim.lsp.config.dockerls = {
   settings = {
