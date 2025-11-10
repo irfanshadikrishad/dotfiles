@@ -137,6 +137,8 @@ alias warp-d="warp-cli disconnect"
 alias warp-s="warp-cli status"
 alias warp-r="warp-cli registration new"
 
+alias docs='SAL_USE_VCLPLUGIN=gtk libreoffice --writer'
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

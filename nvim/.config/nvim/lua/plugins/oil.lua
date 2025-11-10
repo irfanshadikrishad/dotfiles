@@ -5,7 +5,7 @@ return {
   opts = {
     default_file_explorer = false,
     view_options = { show_hidden = true },
-    float = { padding = 10 },
+    float = { padding = 10, border = true },
     delete_to_trash = true,
   },
   lazy = false,
