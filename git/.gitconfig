@@ -21,3 +21,4 @@
 	rebase = false
 [core]
 	editor = nvim
+	autocrlf = false
