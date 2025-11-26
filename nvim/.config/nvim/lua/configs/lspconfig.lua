@@ -15,6 +15,7 @@ local servers = {
   "yamlls",
   "dockerls",
   "nginx_language_server",
+  "prismals",
 }
 
 vim.lsp.config.bashls = {
