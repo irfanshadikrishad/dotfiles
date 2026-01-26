@@ -156,10 +156,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
 export DOCKER_HOST=unix:///var/run/docker.sock
-
-export OPENROUTER_API_KEY="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"
 
 #-----------------------
 #----- Shell functions -
