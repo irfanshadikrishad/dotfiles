@@ -159,6 +159,8 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 export DOCKER_HOST=unix:///var/run/docker.sock
 
+export OPENROUTER_API_KEY="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"
+
 #-----------------------
 #----- Shell functions -
 #-----------------------
@@ -216,6 +218,67 @@ update() {
 
 yayUpdate(){ 
   yay -Syu --noconfirm && yay -Sc --noconfirm && yay -Yc --noconfirm
+}
+
+# Git Commit w/ Previous date
+gitc() {
+  local message="$1"
+  local input_date="$2"
+  local final_date
+
+  if [[ -z "$message" ]]; then
+    echo "Usage: gitc \"commit message\" [YYYY-MM-DD | full date string]"
+    return 1
+  fi
+
+  # If no date → use current system date in proper format
+  if [[ -z "$input_date" ]]; then
+    final_date="$(date '+%Y-%m-%d %H:%M:%S')"
+
+  # If only a date is provided → default time to midnight
+  elif [[ "$input_date" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+    final_date="$input_date 00:00:00"
+
+  # Otherwise pass through (relative dates like "2 weeks ago" still work)
+  else
+    final_date="$input_date"
+  fi
+
+  GIT_AUTHOR_DATE="$final_date" \
+  GIT_COMMITTER_DATE="$final_date" \
+  git commit -m "$message" --date "$final_date"
+}
+
+backup_sshconfig() {
+  local SRC="$HOME/.ssh/config"
+  local DEST_DIR="$HOME/workshop/dotfiles/ssh"
+  local RECIPIENT="irfanshadikrishad@gmail.com"
+  local TIMESTAMP
+  TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+
+  # Ensure source exists
+  if [[ ! -f "$SRC" ]]; then
+    echo "❌ SSH config not found at $SRC"
+    return 1
+  fi
+
+  # Ensure destination directory exists
+  mkdir -p "$DEST_DIR" || {
+    echo "❌ Failed to create destination directory"
+    return 1
+  }
+
+  local OUT_FILE="$DEST_DIR/ssh_config_$TIMESTAMP.gpg"
+
+  echo "🔐 Encrypting SSH config..."
+
+  if gpg --encrypt --sign --recipient "$RECIPIENT" --output "$OUT_FILE" "$SRC"; then
+    chmod 600 "$OUT_FILE"
+    echo "✅ Backup created: $OUT_FILE"
+  else
+    echo "❌ GPG encryption failed"
+    return 1
+  fi
 }
 
 GITSTATUS_LOG_LEVEL=DEBUG
