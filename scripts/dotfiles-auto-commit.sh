@@ -34,7 +34,7 @@ if [[ -n $(git status --porcelain) ]]; then
     exit 1
   }
 
-  echo "\n✔ Dotfiles backed up successfully"
+  echo "✔ Dotfiles backed up successfully"
 else
   echo "✔ No changes — nothing to commit"
 fi
