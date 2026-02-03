@@ -3,7 +3,7 @@
 	email = 77362427+irfanshadikrishad@users.noreply.github.com
 	signingkey = 55AAAB04E67AF604
 [commit]
-	gpgSign = true
+	gpgsign = true
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
