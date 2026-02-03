@@ -1,13 +1,25 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 REPO_DIR="$HOME/workshop/dotfiles"
 BRANCH="master"
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+PRE_BACKUP_SCRIPT="$REPO_DIR/scripts/ssh_backup.sh"
 
 cd "$REPO_DIR" || {
   echo "✘ Repo directory not found: $REPO_DIR"
   exit 1
 }
+
+# Run The SSH backup script first
+if [[ -x "$PRE_BACKUP_SCRIPT" ]]; then
+  echo "🔐 Running SSH backup script..."
+  "$PRE_BACKUP_SCRIPT"
+  echo "✔ SSH backup completed"
+else
+  echo "⚠ Pre-backup script not found or not executable: $PRE_BACKUP_SCRIPT"
+fi
 
 # Make sure it's actually a git repo
 if [[ ! -d .git ]]; then
