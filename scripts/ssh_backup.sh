@@ -7,7 +7,7 @@ set -euo pipefail
 HOME_DIR="${HOME}"
 SSH_DIR="${HOME_DIR}/.ssh"
 BACKUP_DIR="${HOME_DIR}/workshop/dotfiles/ssh"
-BACKUP_NAME="ssh-backup-$(date +%Y-%m-%d_%H-%M-%S)"
+BACKUP_NAME="ssh-backup"
 ARCHIVE_PATH="${HOME_DIR}/${BACKUP_NAME}.tar.gz"
 ENCRYPTED_PATH="${BACKUP_DIR}/${BACKUP_NAME}.tar.gz.gpg"
 GPG_RECIPIENT="77362427+irfanshadikrishad@users.noreply.github.com"
