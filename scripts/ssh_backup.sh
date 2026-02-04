@@ -46,7 +46,7 @@ gpg --output "$ENCRYPTED_PATH" \
     "$ARCHIVE_PATH"
 
 echo "🗑 Removing temporary archive..."
-rm -f "$ARCHIVE_PATH"
+rm -rf "$ARCHIVE_PATH"
 
 echo "✅ SSH backup updated:"
 echo "   $ENCRYPTED_PATH"
