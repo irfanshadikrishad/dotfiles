@@ -12,15 +12,6 @@ cd "$REPO_DIR" || {
   exit 1
 }
 
-# Run The SSH backup script first
-if [[ -x "$PRE_BACKUP_SCRIPT" ]]; then
-  echo "🔐 Running SSH backup script..."
-  "$PRE_BACKUP_SCRIPT"
-  echo "✔ SSH backup completed"
-else
-  echo "⚠ Pre-backup script not found or not executable: $PRE_BACKUP_SCRIPT"
-fi
-
 # Make sure it's actually a git repo
 if [[ ! -d .git ]]; then
   echo "✘ Not a git repository: $REPO_DIR"
@@ -32,7 +23,7 @@ git fetch origin "$BRANCH" >/dev/null 2>&1
 
 # Check for changes (tracked or untracked)
 if [[ -n $(git status --porcelain) ]]; then
-  echo "📦 Changes detected — committing..."
+  echo "✔ Changes detected --- Commiting..."
 
   git add -A
 
