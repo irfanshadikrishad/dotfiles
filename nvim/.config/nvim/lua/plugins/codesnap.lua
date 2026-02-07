@@ -1,5 +1,6 @@
 return {
   "mistricky/codesnap.nvim",
+  tag = "v1.6.3",
   build = "make",
   cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapHighlight", "CodeSnapHighlightSave", "CodeSnapASCII" },
   opts = {
