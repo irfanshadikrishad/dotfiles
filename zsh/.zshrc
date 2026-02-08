@@ -74,6 +74,9 @@ export DOCKER_HOST=unix:///var/run/docker.sock
 # -----------------------
 # Shell Functions
 # -----------------------
+user_list() {
+  awk -F: '$3 >= 1000 && $3 < 65534 { print $1 }' /etc/passwd
+}
 npm-update() {
   npm list -g
   npm outdated -g
