@@ -52,3 +52,6 @@ map("n", "<M-Right>", "<cmd>Treewalker SwapRight<cr>", { silent = true })
 -- Quickfix
 map("n", "<leader>qo", ":copen<CR>", { desc = "Open quickfix list" })
 map("n", "<leader>qc", ":cclose<CR>", { desc = "Close quickfix list" })
+-- Copilot
+map("i", "<M-]>", "<Plg>(copilot-next)", { desc = " Copilot next suggestion" })
+map("i", "<M-[>", "<Plg>(copilot-previous)", { desc = " Copilot previous suggestion" })
