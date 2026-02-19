@@ -40,6 +40,22 @@ Strict Guidelines:
             return select.buffer(source)
           end,
         },
+        Optimize = {
+          prompt = [[
+Please optimize the selected code for performance, readability, and best practices.
+
+Strict Guidelines:
+1. Detect the programming language of the snippet.
+2. Improve time and space complexity where possible.
+3. Refactor for clean, idiomatic style of the detected language.
+4. Remove redundant or dead code.
+5. Preserve original functionality and behavior.
+6. Add brief inline comments only where necessary for clarity.
+7. Output ONLY the optimized code. Do not include explanations or conversational text.
+]],
+          system_prompt = "You are a Senior Software Engineer specializing in code optimization and clean architecture.",
+          description = "Optimize selected code for performance and readability",
+        },
       },
     },
     keys = {
@@ -57,6 +73,7 @@ Strict Guidelines:
       { "<leader>zr", ":CopilotChatRename<CR>", mode = "v", desc = "Rename identifier with Copilot" },
       { "<leader>zd", ":CopilotChatDocs<CR>", mode = "v", desc = "Generate documentation with Copilot" },
       { "<leader>zu", ":CopilotChatNoComments<CR>", mode = "v", desc = "Remove comments with Copilot" },
+      { "<leader>zg", ":CopilotChatOptimize<CR>", mode = "v", desc = "Optimize code with Copilot" },
     },
   },
 }
