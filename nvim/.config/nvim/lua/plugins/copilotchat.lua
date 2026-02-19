@@ -31,6 +31,15 @@ Strict Guidelines:
           system_prompt = "You are a Senior Technical Writer. You excel at writing clear, standard-compliant API documentation for software libraries.",
           description = "Generate standard code documentation (JSDoc, Docstrings, etc.)",
         },
+        NoComments = {
+          prompt = "Please remove all comments (single-line and multi-line) from the provided code. Maintain the original code logic, indentation, and formatting. Do not change any functional code or string literals. Output ONLY the cleaned code without any conversational filler.",
+          system_prompt = "You are a code refactoring assistant specialized in cleaning and minifying source code by removing non-functional documentation and comments.",
+          description = "Remove all comments from the selected code",
+          selection = function(source)
+            local select = require "CopilotChat.select"
+            return select.buffer(source)
+          end,
+        },
       },
     },
     keys = {
@@ -47,6 +56,7 @@ Strict Guidelines:
       { "<leader>ze", ":CopilotChatExplain<CR>", mode = "v", desc = "Explain code with Copilot" },
       { "<leader>zr", ":CopilotChatRename<CR>", mode = "v", desc = "Rename identifier with Copilot" },
       { "<leader>zd", ":CopilotChatDocs<CR>", mode = "v", desc = "Generate documentation with Copilot" },
+      { "<leader>zu", ":CopilotChatNoComments<CR>", mode = "v", desc = "Remove comments with Copilot" },
     },
   },
 }
