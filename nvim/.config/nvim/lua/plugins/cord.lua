@@ -8,8 +8,8 @@ return {
     icon = nil,
   },
   display = {
-    theme = "default",
-    flavor = "dark",
+    theme = "catppuccin",
+    flavor = "accent",
     view = "full",
     swap_fields = false,
     swap_icons = false,
