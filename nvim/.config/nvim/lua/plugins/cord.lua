@@ -1,6 +1,7 @@
 return {
   "vyfor/cord.nvim",
   enabled = true,
+  lazy = false,
   editor = {
     client = "neovim",
     tooltip = "The Superior Text Editor",
