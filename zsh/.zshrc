@@ -53,9 +53,12 @@ alias warp-r="warp-cli registration new"
 
 alias docs='SAL_USE_VCLPLUGIN=gtk libreoffice --writer'
 
-alias arduc='arduino-cli compile --fqbn arduino:avr:uno'
-alias arduu='arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno'
-alias ardum='arduino-cli monitor -p /dev/ttyACM0'
+alias a="arduino-cli"
+alias al="arduino-cli board list"
+alias as="arduino-cli sketch new"
+alias ac="arduino-cli compile --fqbn arduino:avr:uno"
+alias au="arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno"
+alias am="arduino-cli monitor -p /dev/ttyACM0 -c baudrate=9600"
 
 # -----------------------
 # ENV PATHS
