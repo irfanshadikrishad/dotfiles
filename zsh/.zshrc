@@ -55,6 +55,7 @@ alias docs='SAL_USE_VCLPLUGIN=gtk libreoffice --writer'
 
 alias arduc='arduino-cli compile --fqbn arduino:avr:uno'
 alias arduu='arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno'
+alias ardum='arduino-cli monitor -p /dev/ttyACM0'
 
 # -----------------------
 # ENV PATHS
