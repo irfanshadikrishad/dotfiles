@@ -53,5 +53,12 @@ map("n", "<M-Right>", "<cmd>Treewalker SwapRight<cr>", { silent = true })
 map("n", "<leader>qo", ":copen<CR>", { desc = "Open quickfix list" })
 map("n", "<leader>qc", ":cclose<CR>", { desc = "Close quickfix list" })
 -- Copilot
+-- Disable default Tab mapping
+vim.g.copilot_no_tab_map = true
 map("i", "<M-]>", "<Plg>(copilot-next)", { desc = " Copilot next suggestion" })
 map("i", "<M-[>", "<Plg>(copilot-previous)", { desc = " Copilot previous suggestion" })
+map("i", "<M-l>", 'copilot#Accept("<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+  desc = "Copilot accept suggestion",
+})
