@@ -143,16 +143,6 @@ return {
       desc = "Previous todo comment",
     },
     {
-      "<leader>tt",
-      "<cmd>TodoTrouble<cr>",
-      desc = "Todo (Trouble)",
-    },
-    {
-      "<leader>tT",
-      "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",
-      desc = "Todo/Fix/Fixme (Trouble)",
-    },
-    {
       "<leader>st",
       "<cmd>TodoTelescope<cr>",
       desc = "Search Todos",
