@@ -5,6 +5,7 @@ return {
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
     build = "make tiktoken",
+    enabled = false,
     opts = {
       prompts = {
         Rename = {
