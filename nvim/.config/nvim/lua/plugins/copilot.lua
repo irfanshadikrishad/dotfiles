@@ -2,6 +2,7 @@ return {
   "github/copilot.vim",
   lazy = false,
   event = "InsertEnter",
+  enabled = false,
   config = function()
     vim.g.copilot_no_tab_map = true
 
