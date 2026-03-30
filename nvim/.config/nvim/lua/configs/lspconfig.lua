@@ -7,7 +7,7 @@ local servers = {
   "jsonls",
   "marksman",
   "eslint-ls",
-  "emmet_ls",
+  "denols",
   "bashls",
   "jedi_language_server",
   "tailwindcss",
@@ -20,6 +20,10 @@ local servers = {
 
 vim.lsp.config.bashls = {
   filetypes = { "bash", "sh" },
+}
+
+vim.lsp.config.denols = {
+  filetypes = { "javascript", "javascriptreact" },
 }
 
 vim.lsp.config.ts_ls = {
