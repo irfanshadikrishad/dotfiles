@@ -21,3 +21,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH="$(npm bin -g):$PATH"
+export PATH="$HOME/.local/bin:$PATH"
