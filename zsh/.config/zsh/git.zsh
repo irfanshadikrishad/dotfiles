@@ -20,5 +20,3 @@ gitc() {
   GIT_COMMITTER_DATE="$final_date" \
   git commit -m "$message" --date "$final_date"
 }
-
-GITSTATUS_LOG_LEVEL=DEBUG
