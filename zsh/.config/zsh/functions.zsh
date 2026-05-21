@@ -1,7 +1,10 @@
 npm-update() {
-  npm list -g
+  npm list -g --depth=0
   npm outdated -g
-  npm update -g
+  npm outdated -g --parseable 2>/dev/null | cut -d: -f2 | while IFS= read -r pkg; do
+    [[ -z "$pkg" ]] && continue
+    npm install -g "$pkg" || echo "  skipped $pkg"
+  done
 }
 
 apt-update() {

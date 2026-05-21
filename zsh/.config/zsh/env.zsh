@@ -3,15 +3,16 @@
 # -----------------------
 export NVM_DIR="$HOME/.nvm"
 
-nvm() {
-  unset -f nvm node npm npx
+_load_nvm() {
+  unset -f nvm node npm npx _load_nvm
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-  nvm "$@"
 }
-node() { unset -f node; nvm; node "$@"; }
-npm()  { unset -f npm;  nvm; npm  "$@"; }
-npx()  { unset -f npx;  nvm; npx  "$@"; }
+
+nvm()  { _load_nvm; nvm  "$@"; }
+node() { _load_nvm; node "$@"; }
+npm()  { _load_nvm; npm  "$@"; }
+npx()  { _load_nvm; npx  "$@"; }
 
 # -----------------------
 # Go
