@@ -12,13 +12,3 @@ ZSH_CONFIG="$HOME/.config/zsh"
 for file in $ZSH_CONFIG/*.zsh; do
   source "$file"
 done
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/emulator
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH="$(npm bin -g):$PATH"
-export PATH="$HOME/.local/bin:$PATH"
