@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "meow", ---@diagnostic disable-line: assign-type-mismatch
+  theme = "nightfox", ---@diagnostic disable-line: assign-type-mismatch
 
   hl_override = {
     Comment = { italic = true },
