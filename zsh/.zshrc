@@ -9,6 +9,6 @@ fi
 # Load modular config
 ZSH_CONFIG="$HOME/.config/zsh"
 
-for file in $ZSH_CONFIG/*.zsh; do
+for file in "$ZSH_CONFIG"/*.zsh(N); do
   source "$file"
 done
