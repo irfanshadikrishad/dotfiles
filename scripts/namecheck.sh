@@ -132,6 +132,23 @@ check_http() {
     http_result "$(get_status "$url")" > "$out"
 }
 
+check_instagram() {
+    local user="$1" out="$2"
+    local s
+    s=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 --connect-timeout 5 \
+        -A "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0" \
+        -H "X-IG-App-ID: 936619743392459" \
+        "https://www.instagram.com/api/v1/users/web_profile_info/?username=$user" \
+        2>/dev/null)
+    case "$s" in
+        200) echo "$TAKEN" ;;
+        404) echo "$AVAILABLE" ;;
+        429|403) echo "$RATE_LIMITED" ;;
+        000) echo "$TIMEOUT" ;;
+        *) echo "${YELLOW}? $s${RESET}" ;;
+    esac > "$out"
+}
+
 # ─── Input ────────────────────────────────────────────────────────────────────
 
 NAME="${1:-}"
@@ -162,7 +179,7 @@ launch domain "${DSLUG}.co"   check_domain  "${DSLUG}.co"
 launch social "github.com/$USLUG"         check_github  "$USLUG"
 launch social "bsky.app/$USLUG"           check_bluesky "$USLUG"
 launch social "x.com/$USLUG"              check_http    "https://x.com/$USLUG"
-launch social "instagram.com/$USLUG"      check_http    "https://www.instagram.com/$USLUG/"
+launch social "instagram.com/$USLUG"      check_instagram  "$USLUG"
 launch social "linkedin.com/in/$DSLUG"    check_http    "https://www.linkedin.com/in/$DSLUG"
 launch social "reddit.com/u/$USLUG"       check_http    "https://www.reddit.com/user/$USLUG/about.json"
 launch social "pinterest.com/$USLUG"      check_http    "https://www.pinterest.com/$USLUG/"
