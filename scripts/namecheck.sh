@@ -175,6 +175,7 @@ launch domain "${DSLUG}.app"  check_domain  "${DSLUG}.app"
 launch domain "${DSLUG}.dev"  check_domain  "${DSLUG}.dev"
 launch domain "${DSLUG}.net"  check_domain  "${DSLUG}.net"
 launch domain "${DSLUG}.co"   check_domain  "${DSLUG}.co"
+launch domain "${DSLUG}.llc"  check_domain  "${DSLUG}.llc"
 
 launch social "github.com/$USLUG"         check_github  "$USLUG"
 launch social "bsky.app/$USLUG"           check_bluesky "$USLUG"
