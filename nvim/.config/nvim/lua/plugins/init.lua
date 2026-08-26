@@ -28,6 +28,8 @@ return {
         "javascript",
         "typescript",
         "tsx",
+        "markdown",
+        "markdown_inline",
       },
     },
   },

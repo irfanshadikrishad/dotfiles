@@ -72,6 +72,12 @@ fi
 _path_append "$HOME/go/bin"
 
 # -----------------------
+# Java
+# -----------------------
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+_path_prepend "$JAVA_HOME/bin"
+
+# -----------------------
 # Android
 # -----------------------
 export ANDROID_HOME="$HOME/Android/Sdk"
