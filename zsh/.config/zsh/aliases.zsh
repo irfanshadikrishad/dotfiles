@@ -2,6 +2,7 @@
 # ZSH
 # -----------------------
 alias zshconfig="nvim ~/.zshrc"
+alias zshconfig.d="cd ~/workshop/dotfiles/zsh/.config && nvim ."
 alias reload-zsh="source ~/.zshrc"
 
 # -----------------------
@@ -27,10 +28,12 @@ alias gitl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset
 # -----------------------
 # NPM
 # -----------------------
-alias npmf="npm run format"
-alias npmd="npm run dev"
-alias npms="npm run start"
+alias npma="npm run android"
 alias npmb="npm run build"
+alias npmc="npm run clean"
+alias npmd="npm run dev"
+alias npmf="npm run format"
+alias npms="npm run start"
 alias npmbs="npm run build && npm run start"
 
 # -----------------------
@@ -56,3 +59,8 @@ alias as="arduino-cli sketch new"
 alias ac="arduino-cli compile --fqbn arduino:avr:uno"
 alias au="arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno"
 alias am="arduino-cli monitor -p /dev/ttyACM0 -c baudrate=9600"
+
+# -----------------------
+# Files
+# -----------------------
+alias build-location="cd android/app/build/outputs/bundle/release"
