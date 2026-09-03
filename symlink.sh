@@ -1,6 +1,6 @@
 #!/bin/bash
 
-packages=(git fastfetch p10k nvim kitty bash cava neofetch icons fonts openbar hypr hyper themes tmux vscode waybar wofi zsh)
+packages=(git fastfetch p10k nvim kitty bash cava neofetch icons fonts openbar hypr hyper themes tmux vscode waybar wofi zsh claude)
 
 # Loop through and stow each package
 for pkg in "${packages[@]}"; do

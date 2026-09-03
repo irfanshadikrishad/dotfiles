@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
+  "timeFormat": "12-hour",
+  "theme": "dark"
+}
