@@ -9,5 +9,8 @@
   },
   "tui": "fullscreen",
   "timeFormat": "12-hour",
-  "theme": "dark"
+  "theme": "dark",
+  "attribution": {
+    "commit": ""
+  }
 }
