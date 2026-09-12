@@ -11,6 +11,7 @@
   "timeFormat": "12-hour",
   "theme": "dark",
   "attribution": {
-    "commit": ""
+    "commit": "",
+    "sessionUrl": false
   }
 }
