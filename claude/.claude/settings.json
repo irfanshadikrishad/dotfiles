@@ -12,6 +12,7 @@
   "theme": "dark",
   "attribution": {
     "commit": "",
+    "pr": "",
     "sessionUrl": false
   }
 }
