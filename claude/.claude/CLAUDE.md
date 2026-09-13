@@ -2,6 +2,7 @@
 
 - Single short line only: `type: brief description`. No body, no bullet points, no description paragraph — unless I explicitly ask for one.
 - Use a conventional-commit type prefix: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`, `perf`, `build`, `ci`.
+- Keep separation of concerns in commits too: each commit covers one concern/change. Don't bundle unrelated changes (e.g. a feature plus an unrelated config tweak) into a single commit — split them.
 
 # Code structure
 
