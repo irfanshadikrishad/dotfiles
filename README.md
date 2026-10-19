@@ -75,11 +75,12 @@ stow -v --target=$HOME [package_folder_name]
 ```
 
 Example structure
-| Package | What it Manages | Structure in `.dotfiles` |
+
+| Package     | What it Manages                     | Structure in `.dotfiles`                    |
 | ----------- | ----------------------------------- | ------------------------------------------- |
-| `git` | `~/.gitconfig` | `git/.gitconfig` |
-| `nvim` | `~/.config/nvim/` | `nvim/.config/nvim/init.lua` |
-| `zsh` | `~/.zshrc` | `zsh/.zshrc` |
+| `git`       | `~/.gitconfig`                      | `git/.gitconfig`                            |
+| `nvim`      | `~/.config/nvim/`                   | `nvim/.config/nvim/init.lua`                |
+| `zsh`       | `~/.zshrc`                          | `zsh/.zshrc`                                |
 | `alacritty` | `~/.config/alacritty/alacritty.yml` | `alacritty/.config/alacritty/alacritty.yml` |
 
 #### Unstowing (Removing Symlinks)
@@ -94,4 +95,15 @@ for example
 
 ```bash
 stow -D nvim
+```
+
+#### Activate Server Backups (requires stow: bin & systemd)
+
+```bash
+mkdir -p ~/.config/server-backup
+cp systemd/.config/server-backup/jobs.conf.example ~/.config/server-backup/jobs.conf
+$EDITOR ~/.config/server-backup/jobs.conf
+
+systemctl --user daemon-reload
+systemctl --user enable --now server-backup.timer
 ```

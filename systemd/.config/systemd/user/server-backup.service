@@ -1,0 +1,6 @@
+[Unit]
+Description=Pull backups from remote servers
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/server-backup
