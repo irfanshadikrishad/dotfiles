@@ -39,3 +39,6 @@ alias goaccess-apache-live='sudo tail -F /var/log/apache2/access.log | goaccess 
 
 # Wipe GoAccess persisted DB so next run starts fresh
 alias goaccess-reset='sudo rm -rf /var/lib/goaccess-db/* /tmp/goaccess* 2>/dev/null; echo "GoAccess DB cleared"'
+
+# Correctly check if any .env file was actually served (200 on the request path)
+alias goaccess-env-check='sudo awk '\''$7 ~ /\.env/ && $9 == 200 {print}'\'' /var/log/nginx/access.log || echo "✅ No .env files were served"'
