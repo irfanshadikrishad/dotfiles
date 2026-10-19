@@ -42,3 +42,5 @@ alias goaccess-reset='sudo rm -rf /var/lib/goaccess-db/* /tmp/goaccess* 2>/dev/n
 
 # Correctly check if any .env file was actually served (200 on the request path)
 alias goaccess-env-check='sudo awk '\''$7 ~ /\.env/ && $9 == 200 {print}'\'' /var/log/nginx/access.log || echo "✅ No .env files were served"'
+
+alias sync-sshrc='cp ~/workshop/dotfiles/zsh/.config/zsh/goaccess.zsh ~/.sshrc && echo "~/.sshrc synced"'
