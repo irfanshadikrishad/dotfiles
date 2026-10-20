@@ -20,7 +20,24 @@ map("n", "<leader>-", ":Oil --float<CR>", { desc = "Opens Oil file manager in fl
 
 -- CodeSnap mappings
 map("v", "<leader>0", ":CodeSnap<CR>", { desc = "Snaps the selected code to clipboard." })
-map("v", "<leader>1", ":CodeSnapSave<CR>", { desc = "Snaps and saves the selected code." })
+map("v", "<leader>1", function()
+  -- Generate timestamp, format: 2026-10-20_14-30-00
+  local timestamp = os.date "%Y-%m-%d_%H-%M-%S"
+  -- Construct full path
+  local path = "~/Pictures/CodeSnap/codesnap_" .. timestamp .. ".png"
+  -- Execute command and pass path
+  vim.cmd("CodeSnapSave " .. path)
+end, { desc = "Snaps and saves with timestamp." })
+map("v", "<leader>2", ":CodeSnapHighlight<CR>", { desc = "Snap w/ highlight and copy to clipboard." })
+map("v", "<leader>3", function()
+  -- Generate timestamp, format: 2026-10-20_14-30-00
+  local timestamp = os.date "%Y-%m-%d_%H-%M-%S"
+  -- Construct full path with a specific prefix for highlighted snaps
+  local path = "~/Pictures/CodeSnap/highlight_" .. timestamp .. ".png"
+  -- Execute the highlight save command and pass the path
+  vim.cmd("CodeSnapSaveHighlight " .. path)
+end, { desc = "Snap w/ highlight and save with timestamp." })
+map("v", "<leader>4", ":CodeSnapASCII<CR>", { desc = "Snap in ASCII format and copy to clipboard." })
 
 -- Timerly toggle
 map("n", "<leader>tt", ":TimerlyToggle<CR>", { desc = "Toggle Timerly." })

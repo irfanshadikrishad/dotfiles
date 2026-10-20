@@ -11,12 +11,14 @@ return {
   config = function()
     require("codesnap").setup {
       show_line_number = true,
-      show_workspace = false,
-      bg_padding = 0,
+      show_workspace = true,
+      save_path = "~/Pictures/CodeSnap",
       snapshot_config = {
         theme = "candy",
         background = "#00000000",
         window = {
+          margin = { x = 0, y = 0 },
+          border = { width = 0 },
           mac_window_bar = false,
           title_config = { font_family = "Pacifico" },
         },
@@ -29,8 +31,8 @@ return {
           },
         },
         watermark = {
-          content = "",
-          font_family = "Pacifico",
+          content = "@irfanshadikrishad",
+          font_family = "CaskaydiaCove Nerd Font",
         },
       },
     }
