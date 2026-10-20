@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+# Daily hard-link snapshots of the live mirrors, 7-day retention.
+# Snapshots are created FROM the local mirror (no extra SSH traffic).
+
+set -euo pipefail
+
+# ── Config ────────────────────────────────────────────────────
+# Format: "name|source_dir"  (source is the live mirror on this PC)
+SNAP_JOBS=(
+  "t2sports|$HOME/workshop/backups/t2sports"
+  "res|$HOME/workshop/backups/res"
+  "cvrs|$HOME/workshop/backups/cvrs"
+)
+
+SNAP_ROOT="$HOME/workshop/backups/snapshots"
+KEEP_DAYS=7
+LOG="$HOME/workshop/backups/snapshot.log"
+TODAY=$(date +%Y-%m-%d)
+
+mkdir -p "$SNAP_ROOT"
+
+# ── Colors (only when stdout is a TTY) ────────────────────────
+if [[ -t 1 ]]; then
+  C_RESET=$'\033[0m'; C_BOLD=$'\033[1m'; C_DIM=$'\033[2m'
+  C_RED=$'\033[31m'; C_GREEN=$'\033[32m'; C_YELLOW=$'\033[33m'
+  C_BLUE=$'\033[34m'; C_CYAN=$'\033[36m'
+else
+  C_RESET="" C_BOLD="" C_DIM="" C_RED="" C_GREEN="" C_YELLOW="" C_BLUE="" C_CYAN=""
+fi
+
+# ── Helpers ───────────────────────────────────────────────────
+spinner() {
+  local pid=$1 msg=$2
+  local frames=('⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏')
+  local i=0
+  while kill -0 "$pid" 2>/dev/null; do
+    printf "\r  ${C_CYAN}%s${C_RESET} ${C_DIM}%s${C_RESET}" \
+      "${frames[$((i++ % ${#frames[@]}))]}" "$msg"
+    sleep 0.1
+  done
+  printf "\r\033[K"
+}
+
+# ── Run ───────────────────────────────────────────────────────
+overall_start=$(date +%s)
+failed=0
+
+for job in "${SNAP_JOBS[@]}"; do
+  IFS='|' read -r name src <<< "$job"
+
+  if [[ ! -d "$src" ]]; then
+    printf "${C_YELLOW}▲ %s${C_RESET} skipped ${C_DIM}(no live mirror at %s)${C_RESET}\n" "$name" "$src"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] SKIP $name (missing $src)" >> "$LOG"
+    continue
+  fi
+
+  dest_root="$SNAP_ROOT/$name"
+  dest="$dest_root/$TODAY"
+  mkdir -p "$dest_root"
+
+  # Find the most recent previous snapshot to use as --link-dest
+  prev=$(find "$dest_root" -mindepth 1 -maxdepth 1 -type d \
+           -name '20??-??-??' ! -name "$TODAY" \
+           | sort | tail -n 1)
+
+  printf "${C_BLUE}➜${C_RESET} ${C_BOLD}Snapshot %s${C_RESET} ${C_DIM}(%s)${C_RESET}\n" "$name" "$TODAY"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Snapshot $name $TODAY" >> "$LOG"
+
+  job_start=$(date +%s)
+
+  # Build the rsync args; add --link-dest if a previous snapshot exists
+  rsync_args=(-a --delete)
+  if [[ -n "$prev" ]]; then
+    rsync_args+=(--link-dest="$prev")
+  fi
+
+  rsync "${rsync_args[@]}" "$src/" "$dest/" >> "$LOG" 2>&1 &
+  rsync_pid=$!
+
+  if [[ -t 1 ]]; then
+    spinner "$rsync_pid" "Snapshotting $name..."
+  fi
+
+  if wait "$rsync_pid"; then
+    job_end=$(date +%s); dur=$((job_end - job_start))
+    size=$(du -sh "$dest" 2>/dev/null | cut -f1)
+    printf "${C_GREEN}✔ %s${C_RESET} snapshot in ${C_YELLOW}%ss${C_RESET} — ${C_CYAN}%s${C_RESET}\n" \
+      "$name" "$dur" "$size"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Done $name (${dur}s, $size)" >> "$LOG"
+  else
+    failed=$((failed + 1))
+    printf "${C_RED}✘ %s snapshot failed${C_RESET} ${C_DIM}(see %s)${C_RESET}\n" "$name" "$LOG"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] FAILED $name" >> "$LOG"
+  fi
+done
+
+# ── Prune old snapshots (> KEEP_DAYS) ─────────────────────────
+printf "${C_DIM}Pruning snapshots older than %s days...${C_RESET}\n" "$KEEP_DAYS"
+for job in "${SNAP_JOBS[@]}"; do
+  IFS='|' read -r name _ <<< "$job"
+  dest_root="$SNAP_ROOT/$name"
+  [[ -d "$dest_root" ]] || continue
+  find "$dest_root" -mindepth 1 -maxdepth 1 -type d -name '20??-??-??' \
+    -mtime +"$KEEP_DAYS" -print -exec rm -rf {} + >> "$LOG" 2>&1
+done
+
+# ── Summary ───────────────────────────────────────────────────
+total=$(( $(date +%s) - overall_start ))
+if [[ $failed -eq 0 ]]; then
+  printf "\n${C_GREEN}${C_BOLD}🎉 Snapshots complete in %ss${C_RESET}\n" "$total"
+else
+  printf "\n${C_YELLOW}${C_BOLD}▲  %d snapshot job(s) failed${C_RESET} ${C_DIM}(total %ss)${C_RESET}. Check: ${C_RED}%s${C_RESET}\n" \
+    "$failed" "$total" "$LOG"
+  exit 1
+fi

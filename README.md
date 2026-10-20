@@ -106,4 +106,5 @@ $EDITOR ~/.config/server-backup/jobs.conf
 
 systemctl --user daemon-reload
 systemctl --user enable --now server-backup.timer
+systemctl --user enable --now server-snapshot.timer
 ```

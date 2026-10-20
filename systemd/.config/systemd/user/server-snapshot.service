@@ -1,0 +1,7 @@
+[Unit]
+Description=Daily hard-link snapshots of server backups
+After=server-backup.service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/server-snapshot

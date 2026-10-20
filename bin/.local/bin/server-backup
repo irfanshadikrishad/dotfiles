@@ -1,3 +1,5 @@
+# .local/bin/server-backup
+
 #!/usr/bin/env bash
 # Generic pull-backup from remote servers via rsync over SSH.
 # Only transfers changes; safe to run hourly.
