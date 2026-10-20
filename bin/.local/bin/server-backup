@@ -8,6 +8,8 @@ set -euo pipefail
 # Format: "name|ssh_target|remote_path|local_path"
 JOBS=(
   "t2sports|deploy@t2sports|~/t2sports/public/uploads|$HOME/workshop/backups/t2sports"
+  "res|appuser@sitelar|/home/appuser/res/public|$HOME/workshop/backups/res"
+  "cvrs|appuser@sitelar|/home/appuser/rrs/public|$HOME/workshop/backups/cvrs"
   # Add more servers here, e.g.:
   # "<name>|deploy@otherhost|~/app/uploads|$HOME/workshop/backups/<name>"
 )
@@ -15,20 +17,79 @@ JOBS=(
 LOG="$HOME/workshop/backups/backup.log"
 mkdir -p "$HOME/workshop/backups"
 
+# ── Colors (only when stdout is a TTY) ────────────────────────
+if [[ -t 1 ]]; then
+  C_RESET=$'\033[0m'
+  C_BOLD=$'\033[1m'
+  C_DIM=$'\033[2m'
+  C_RED=$'\033[31m'
+  C_GREEN=$'\033[32m'
+  C_YELLOW=$'\033[33m'
+  C_BLUE=$'\033[34m'
+  C_CYAN=$'\033[36m'
+else
+  C_RESET="" C_BOLD="" C_DIM="" C_RED="" C_GREEN="" C_YELLOW="" C_BLUE="" C_CYAN=""
+fi
+
+# ── Helpers ───────────────────────────────────────────────────
+# Show a spinner only when attached to a terminal (keeps journal clean)
+spinner() {
+  local pid=$1 msg=$2
+  local frames=('⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏')
+  local i=0
+  while kill -0 "$pid" 2>/dev/null; do
+    printf "\r  ${C_CYAN}%s${C_RESET} ${C_DIM}%s${C_RESET}" "${frames[$((i++ % ${#frames[@]}))]}" "$msg"
+    sleep 0.1
+  done
+  printf "\r\033[K"   # clear the spinner line
+}
+
 # ── Run ───────────────────────────────────────────────────────
+overall_start=$(date +%s)
+failed=0
+
 for job in "${JOBS[@]}"; do
   IFS='|' read -r name target remote local <<< "$job"
 
   mkdir -p "$local"
 
+  printf "${C_BLUE}➜${C_RESET} ${C_BOLD}Syncing %s${C_RESET} ${C_DIM}(%s:%s)${C_RESET}\n" "$name" "$target" "$remote"
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] Syncing $name ($target:$remote)" >> "$LOG"
 
-  # -a archive, -z compress, -e ssh, --delete mirror (remove deleted files locally)
-  # Remove --delete if you want to keep files deleted on the server.
+  job_start=$(date +%s)
+
+  # Run rsync in background so the spinner can animate
   rsync -az --delete \
     -e "ssh -o BatchMode=yes -o ConnectTimeout=10" \
     "$target:$remote/" "$local/" \
-    >> "$LOG" 2>&1
+    >> "$LOG" 2>&1 &
+  rsync_pid=$!
 
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Done $name" >> "$LOG"
+  if [[ -t 1 ]]; then
+    spinner "$rsync_pid" "Backing up $name..."
+  fi
+
+  if wait "$rsync_pid"; then
+    job_end=$(date +%s)
+    dur=$((job_end - job_start))
+    size=$(du -sh "$local" 2>/dev/null | cut -f1)
+    files=$(find "$local" -type f 2>/dev/null | wc -l)
+    printf "${C_GREEN}✔ %s${C_RESET} done in ${C_YELLOW}%ss${C_RESET} — ${C_CYAN}%s${C_RESET}, ${C_CYAN}%s${C_RESET} files\n" \
+      "$name" "$dur" "$size" "$files"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] Done $name (${dur}s, $size, $files files)" >> "$LOG"
+  else
+    failed=$((failed + 1))
+    printf "${C_RED}✘ %s failed${C_RESET} ${C_DIM}(see %s)${C_RESET}\n" "$name" "$LOG"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] FAILED $name" >> "$LOG"
+  fi
 done
+
+# ── Summary ───────────────────────────────────────────────────
+total=$(( $(date +%s) - overall_start ))
+if [[ $failed -eq 0 ]]; then
+  printf "\n${C_GREEN}${C_BOLD}🎉 All backups complete in %ss${C_RESET}\n" "$total"
+else
+  printf "\n${C_YELLOW}${C_BOLD}▲  %d job(s) failed${C_RESET} ${C_DIM}(total %ss)${C_RESET}. Check: ${C_RED}%s${C_RESET}\n" \
+    "$failed" "$total" "$LOG"
+  exit 1
+fi

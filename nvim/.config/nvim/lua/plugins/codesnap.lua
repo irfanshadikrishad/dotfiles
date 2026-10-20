@@ -1,6 +1,6 @@
 return {
   "mistricky/codesnap.nvim",
-  tag = "v2.0.5",
+  tag = "v2.1.1",
   cmd = {
     "CodeSnap",
     "CodeSnapSave",
