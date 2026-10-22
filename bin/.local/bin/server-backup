@@ -1,39 +1,30 @@
 #!/usr/bin/env bash
 # .local/bin/server-backup
-# Generic pull-backup from remote servers via rsync over SSH.
-# Only transfers changes; safe to run hourly.
+# Pull backups from remote servers, snapshotting the mirror BEFORE --delete.
 
 set -euo pipefail
 
 # ── Config ────────────────────────────────────────────────────
-# Format: "name|ssh_target|remote_path|local_path"
 JOBS=(
   "t2sports|deploy@t2sports|~/t2sports/public/uploads|$HOME/workshop/backups/t2sports"
   "res|appuser@sitelar|/home/appuser/res/public|$HOME/workshop/backups/res"
   "cvrs|appuser@sitelar|/home/appuser/rrs/public|$HOME/workshop/backups/cvrs"
-  # Add more servers here, e.g.:
-  # "<name>|deploy@otherhost|~/app/uploads|$HOME/workshop/backups/<name>"
 )
 
 LOG="$HOME/workshop/backups/backup.log"
-mkdir -p "$HOME/workshop/backups"
+SNAP_ROOT="$HOME/workshop/backups/snapshots"
+KEEP_SNAPSHOTS=7   # keep only this many snapshot generations per job
+mkdir -p "$HOME/workshop/backups" "$SNAP_ROOT"
 
 # ── Colors (only when stdout is a TTY) ────────────────────────
 if [[ -t 1 ]]; then
-  C_RESET=$'\033[0m'
-  C_BOLD=$'\033[1m'
-  C_DIM=$'\033[2m'
-  C_RED=$'\033[31m'
-  C_GREEN=$'\033[32m'
-  C_YELLOW=$'\033[33m'
-  C_BLUE=$'\033[34m'
-  C_CYAN=$'\033[36m'
+  C_RESET=$'\033[0m'; C_BOLD=$'\033[1m'; C_DIM=$'\033[2m'
+  C_RED=$'\033[31m'; C_GREEN=$'\033[32m'; C_YELLOW=$'\033[33m'
+  C_BLUE=$'\033[34m'; C_CYAN=$'\033[36m'
 else
   C_RESET="" C_BOLD="" C_DIM="" C_RED="" C_GREEN="" C_YELLOW="" C_BLUE="" C_CYAN=""
 fi
 
-# ── Helpers ───────────────────────────────────────────────────
-# Show a spinner only when attached to a terminal (keeps journal clean)
 spinner() {
   local pid=$1 msg=$2
   local frames=('⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏')
@@ -42,7 +33,34 @@ spinner() {
     printf "\r  ${C_CYAN}%s${C_RESET} ${C_DIM}%s${C_RESET}" "${frames[$((i++ % ${#frames[@]}))]}" "$msg"
     sleep 0.1
   done
-  printf "\r\033[K"   # clear the spinner line
+  printf "\r\033[K"
+}
+
+# ── Snapshot helper ───────────────────────────────────────────
+# Take a hard-link snapshot of the CURRENT live mirror into
+# snapshots/<name>/<YYYY-MM-DD_HHMM>/, pruning old ones.
+take_snapshot() {
+  local name=$1 local_dir=$2
+  [[ -d "$local_dir" ]] || return 0
+  [[ -n "$(ls -A "$local_dir" 2>/dev/null)" ]] || return 0
+
+  local dest_root="$SNAP_ROOT/$name"
+  local dest="$dest_root/$(date +%Y-%m-%d_%H%M)"
+  mkdir -p "$dest_root" "$dest"
+
+  local prev
+  prev=$(find "$dest_root" -mindepth 1 -maxdepth 1 -type d \
+           -name '20??-??-??_????' ! -path "$dest" \
+           | sort | tail -n 1)
+
+  local args=(-a)
+  [[ -n "$prev" ]] && args+=(--link-dest="$prev")
+
+  rsync "${args[@]}" "$local_dir/" "$dest/" >> "$LOG" 2>&1 || true
+
+  # Prune: keep only the newest KEEP_SNAPSHOTS generations
+  find "$dest_root" -mindepth 1 -maxdepth 1 -type d -name '20??-??-??_????' \
+    | sort | head -n -"$KEEP_SNAPSHOTS" | xargs -r rm -rf
 }
 
 # ── Run ───────────────────────────────────────────────────────
@@ -51,28 +69,26 @@ failed=0
 
 for job in "${JOBS[@]}"; do
   IFS='|' read -r name target remote local <<< "$job"
-
   mkdir -p "$local"
 
   printf "${C_BLUE}➜${C_RESET} ${C_BOLD}Syncing %s${C_RESET} ${C_DIM}(%s:%s)${C_RESET}\n" "$name" "$target" "$remote"
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] Syncing $name ($target:$remote)" >> "$LOG"
 
+  # Snapshot the pre-delete state so nothing is lost
+  take_snapshot "$name" "$local"
+
   job_start=$(date +%s)
 
-  # Run rsync in background so the spinner can animate
   rsync -az --delete \
     -e "ssh -o BatchMode=yes -o ConnectTimeout=10" \
     "$target:$remote/" "$local/" \
     >> "$LOG" 2>&1 &
   rsync_pid=$!
 
-  if [[ -t 1 ]]; then
-    spinner "$rsync_pid" "Backing up $name..."
-  fi
+  [[ -t 1 ]] && spinner "$rsync_pid" "Backing up $name..."
 
   if wait "$rsync_pid"; then
-    job_end=$(date +%s)
-    dur=$((job_end - job_start))
+    job_end=$(date +%s); dur=$((job_end - job_start))
     size=$(du -sh "$local" 2>/dev/null | cut -f1)
     files=$(find "$local" -type f 2>/dev/null | wc -l)
     printf "${C_GREEN}✔ %s${C_RESET} done in ${C_YELLOW}%ss${C_RESET} — ${C_CYAN}%s${C_RESET}, ${C_CYAN}%s${C_RESET} files\n" \
