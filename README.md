@@ -26,6 +26,12 @@ stow nvim
 stow zsh
 ```
 
+If fails, use
+
+```bash
+stow -v -t ~ <name>
+```
+
 #### Adding New Configs
 
 Each config should live in its own folder, named after the application or tool. Inside that folder, recreate the path where the config would normally live.
