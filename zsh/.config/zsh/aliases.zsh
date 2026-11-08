@@ -17,6 +17,7 @@ alias off="systemctl poweroff -i"
 alias restart="systemctl reboot -i"
 
 alias docs='SAL_USE_VCLPLUGIN=gtk libreoffice --writer'
+alias ff='fastfetch'
 
 # -----------------------
 # Git
