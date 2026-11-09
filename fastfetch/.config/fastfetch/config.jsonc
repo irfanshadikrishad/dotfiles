@@ -7,10 +7,9 @@
     },
   },
   "display": {
-    "separator": "  ",
+    "separator": "    ",
   },
   "modules": [
-    "break",
     "break",
     "title",
     {
@@ -30,15 +29,21 @@
       "keyColor": "33",
     },
     {
+      "type": "shell",
+      "format": "{pretty-name} {version}",
+      "key": "shell ",
+      "keyColor": "33",
+    },
+    {
       "type": "packages",
-      "format": "{} (pacman)",
+      "format": "{} (dpkg)",
       "key": "pkgs  ",
       "keyColor": "33",
     },
     {
       "type": "cpu",
-      "format": "   {2}",
-      "key": "cpu",
+      "format": "{name} ({cores-physical}C/{cores-logical}T) @ {freq-max}",
+      "key": "cpu   ",
       "keyColor": "33",
     },
     {
@@ -51,7 +56,6 @@
       "key": "disk  ",
       "keyColor": "33",
     },
-    "break",
     "break",
   ],
 }
