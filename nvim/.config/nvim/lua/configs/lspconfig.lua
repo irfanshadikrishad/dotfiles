@@ -50,6 +50,8 @@ local servers = {
       },
     },
   },
+
+  rust_analyzer = {},
 }
 
 for name, config in pairs(servers) do
