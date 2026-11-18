@@ -52,7 +52,45 @@ local servers = {
   },
 
   rust_analyzer = {},
+
+  -- Python: pyright = types/completion/navigation, ruff = lint + import code actions.
+  -- Formatting stays with conform (black).
+  pyright = {
+    settings = {
+      pyright = {
+        disableOrganizeImports = true, -- ruff owns import sorting
+      },
+      python = {
+        analysis = {
+          typeCheckingMode = "standard", -- "basic" is looser, "strict" is noisy on untyped code
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = "openFilesOnly", -- keeps large repos/monorepos fast
+        },
+      },
+    },
+  },
+
+  ruff = {
+    init_options = {
+      settings = {
+        logLevel = "warn",
+      },
+    },
+  },
 }
+
+-- Ruff and pyright both provide hover; keep pyright's (it has the type info).
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("RuffDisableHover", { clear = true }),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.name == "ruff" then
+      client.server_capabilities.hoverProvider = false
+    end
+  end,
+  desc = "LSP: disable hover from ruff in favour of pyright",
+})
 
 for name, config in pairs(servers) do
   -- only call vim.lsp.config when there is something to merge

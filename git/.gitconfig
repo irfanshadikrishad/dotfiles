@@ -22,3 +22,16 @@
 [core]
 	editor = nvim
 	autocrlf = false
+	attributesFile = /home/zeitu/.config/git/attributes
+	excludesFile = /home/zeitu/.config/git/ignore
+[filter "dotenvx"]
+	clean = '/home/zeitu/.nvm/versions/node/v22.23.3/bin/node' '/home/zeitu/workshop/irfanshadikrishad.uk/node_modules/@dotenvx/dotenvx/src/cli/dotenvx.js' protect --git-file %f
+	process = '/home/zeitu/.nvm/versions/node/v22.23.3/bin/node' '/home/zeitu/workshop/irfanshadikrishad.uk/node_modules/@dotenvx/dotenvx/src/cli/dotenvx.js' protect --git-process
+	required = true
+[filter "dotenvx.protect"]
+	clean = '/home/zeitu/.nvm/versions/node/v22.23.3/bin/node' '/home/zeitu/workshop/irfanshadikrishad.uk/node_modules/@dotenvx/dotenvx/src/cli/dotenvx.js' protect --git-file %f
+	process = '/home/zeitu/.nvm/versions/node/v22.23.3/bin/node' '/home/zeitu/workshop/irfanshadikrishad.uk/node_modules/@dotenvx/dotenvx/src/cli/dotenvx.js' protect --git-process
+	required = true
+[dotenvx "protect"]
+	ignoreFile = /home/zeitu/.config/git/ignore
+	configured = true
